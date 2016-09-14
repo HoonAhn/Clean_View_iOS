@@ -1,0 +1,72 @@
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "0LD-p5-rLt"; */
+"0LD-p5-rLt.normalTitle" = "취소";
+
+/* Class = "UIBarButtonItem"; title = "MyPage"; ObjectID = "1EF-8U-acO"; */
+"1EF-8U-acO.title" = "MyPage";
+
+/* Class = "UILabel"; text = "* 표시는 필수 기재 사항입니다."; ObjectID = "3m6-gD-orh"; */
+"3m6-gD-orh.text" = "* 표시는 필수 기재 사항입니다.";
+
+/* Class = "UIButton"; normalTitle = "건조기 2"; ObjectID = "58V-Lj-dJw"; */
+"58V-Lj-dJw.normalTitle" = "건조기 2";
+
+/* Class = "UIButton"; normalTitle = "회원 가입"; ObjectID = "5N1-lV-KDs"; */
+"5N1-lV-KDs.normalTitle" = "회원 가입";
+
+/* Class = "UITextField"; placeholder = "Username *"; ObjectID = "5Nj-KS-xOd"; */
+"5Nj-KS-xOd.placeholder" = "Username *";
+
+/* Class = "UITextField"; placeholder = "Password *"; ObjectID = "8FC-xn-0Ti"; */
+"8FC-xn-0Ti.placeholder" = "Password *";
+
+/* Class = "UIButton"; normalTitle = "세탁기 1"; ObjectID = "DDx-VW-7vL"; */
+"DDx-VW-7vL.normalTitle" = "세탁기 1";
+
+/* Class = "UIButton"; normalTitle = "세탁기 2"; ObjectID = "FiW-hG-T47"; */
+"FiW-hG-T47.normalTitle" = "세탁기 2";
+
+/* Class = "UINavigationItem"; title = "MyPage"; ObjectID = "IgG-Tb-baf"; */
+"IgG-Tb-baf.title" = "MyPage";
+
+/* Class = "UILabel"; text = "회원 가입"; ObjectID = "JOw-Y5-aHy"; */
+"JOw-Y5-aHy.text" = "회원 가입";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "P9t-t4-qSm"; */
+"P9t-t4-qSm.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "건조기 1"; ObjectID = "S7i-rB-ros"; */
+"S7i-rB-ros.normalTitle" = "건조기 1";
+
+/* Class = "UILabel"; text = "셀피아 코인탁소 안산점"; ObjectID = "SeT-KU-g3C"; */
+"SeT-KU-g3C.text" = "셀피아 코인탁소 안산점";
+
+/* Class = "UITextField"; placeholder = "Phone number"; ObjectID = "bur-S3-KdC"; */
+"bur-S3-KdC.placeholder" = "Phone number";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "cJ0-gt-PCP"; */
+"cJ0-gt-PCP.placeholder" = "Username";
+
+/* Class = "UILabel"; text = "자동 로그인"; ObjectID = "ckS-1W-X4g"; */
+"ckS-1W-X4g.text" = "자동 로그인";
+
+/* Class = "UILabel"; text = "아직 회원이 아니세요?"; ObjectID = "fdQ-8L-XAN"; */
+"fdQ-8L-XAN.text" = "아직 회원이 아니세요?";
+
+/* Class = "UIButton"; normalTitle = "회원가입"; ObjectID = "gHu-eS-jyB"; */
+"gHu-eS-jyB.normalTitle" = "회원가입";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "lXZ-5Y-tBS"; */
+"lXZ-5Y-tBS.normalTitle" = "Logout";
+
+/* Class = "UINavigationItem"; title = "사용 현황"; ObjectID = "oEq-Ky-1Be"; */
+"oEq-Ky-1Be.title" = "사용 현황";
+
+/* Class = "UILabel"; text = "Clean View"; ObjectID = "ohk-Ru-xV9"; */
+"ohk-Ru-xV9.text" = "Clean View";
+
+/* Class = "UITextField"; placeholder = "Password Confirm *"; ObjectID = "ruv-YH-drw"; */
+"ruv-YH-drw.placeholder" = "Password Confirm *";
+
+/* Class = "UIButton"; normalTitle = "로그인"; ObjectID = "xqY-wU-CNI"; */
+"xqY-wU-CNI.normalTitle" = "로그인";
