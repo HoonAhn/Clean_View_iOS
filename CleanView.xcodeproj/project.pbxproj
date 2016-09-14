@@ -10,9 +10,10 @@
 		0DD6ACC2B24CCA8D90DFA035 /* Pods_CleanView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0119AC165764CF1DCFDAA5AD /* Pods_CleanView.framework */; };
 		965E7A2B20126C3631877262 /* Pods_CleanViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05919DB60BCA155CE90C91E0 /* Pods_CleanViewTests.framework */; };
 		C56FE1311D869D800004CB80 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C56FE1331D869D800004CB80 /* InfoPlist.strings */; };
+		C56FE1B11D8942900004CB80 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56FE1B01D8942900004CB80 /* CircleProgressView.swift */; };
 		C597C4771D7D01C200DD55FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C597C4761D7D01C200DD55FA /* GoogleService-Info.plist */; };
 		C5D439FB1D633435000922B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D439FA1D633435000922B2 /* AppDelegate.swift */; };
-		C5D439FD1D633435000922B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D439FC1D633435000922B2 /* ViewController.swift */; };
+		C5D439FD1D633435000922B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D439FC1D633435000922B2 /* LoginViewController.swift */; };
 		C5D43A001D633435000922B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5D439FE1D633435000922B2 /* Main.storyboard */; };
 		C5D43A021D633435000922B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5D43A011D633435000922B2 /* Assets.xcassets */; };
 		C5D43A051D633435000922B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5D43A031D633435000922B2 /* LaunchScreen.storyboard */; };
@@ -57,10 +58,11 @@
 		C56FE1381D869E420004CB80 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/Main.strings"; sourceTree = "<group>"; };
 		C56FE1391D869E420004CB80 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		C56FE13A1D869E420004CB80 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C56FE1B01D8942900004CB80 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		C597C4761D7D01C200DD55FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C5D439F71D633435000922B2 /* CleanView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D439FA1D633435000922B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C5D439FC1D633435000922B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C5D439FC1D633435000922B2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5D439FF1D633435000922B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C5D43A011D633435000922B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5D43A041D633435000922B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 		C5D43A161D633436000922B2 /* CleanViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D43A1A1D633436000922B2 /* CleanViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanViewUITests.swift; sourceTree = "<group>"; };
 		C5D43A1C1D633436000922B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5D43A281D6339E9000922B2 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = CleanView/SignupViewController.swift; sourceTree = "<group>"; };
+		C5D43A281D6339E9000922B2 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C5D43AB01D65DA73000922B2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5D43AB51D6879B6000922B2 /* CleanViewLogo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CleanViewLogo.jpeg; sourceTree = "<group>"; };
 		E4376018858CC6A238D1170A /* Pods-CleanViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanViewTests/Pods-CleanViewTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,11 +139,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C56FE1AF1D8942750004CB80 /* CircleProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				C56FE1B01D8942900004CB80 /* CircleProgressView.swift */,
+			);
+			name = CircleProgressView;
+			sourceTree = "<group>";
+		};
 		C5D439EE1D633435000922B2 = {
 			isa = PBXGroup;
 			children = (
 				C5D439F91D633435000922B2 /* CleanView */,
-				C5D43A281D6339E9000922B2 /* SignupViewController.swift */,
 				C5D43A0E1D633436000922B2 /* CleanViewTests */,
 				C5D43A191D633436000922B2 /* CleanViewUITests */,
 				C5D439F81D633435000922B2 /* Products */,
@@ -163,15 +172,17 @@
 		C5D439F91D633435000922B2 /* CleanView */ = {
 			isa = PBXGroup;
 			children = (
+				C56FE1AF1D8942750004CB80 /* CircleProgressView */,
 				C56FE12E1D869CDB0004CB80 /* Supporting Files */,
 				C5D43AB21D687943000922B2 /* image */,
 				C5D439FA1D633435000922B2 /* AppDelegate.swift */,
-				C5D439FC1D633435000922B2 /* ViewController.swift */,
-				C5D439FE1D633435000922B2 /* Main.storyboard */,
-				C5D43A011D633435000922B2 /* Assets.xcassets */,
-				C5D43A031D633435000922B2 /* LaunchScreen.storyboard */,
-				C5D43A061D633435000922B2 /* Info.plist */,
+				C5D43A281D6339E9000922B2 /* SignupViewController.swift */,
+				C5D439FC1D633435000922B2 /* LoginViewController.swift */,
 				C5D43AB01D65DA73000922B2 /* MainViewController.swift */,
+				C5D439FE1D633435000922B2 /* Main.storyboard */,
+				C5D43A031D633435000922B2 /* LaunchScreen.storyboard */,
+				C5D43A011D633435000922B2 /* Assets.xcassets */,
+				C5D43A061D633435000922B2 /* Info.plist */,
 				C597C4761D7D01C200DD55FA /* GoogleService-Info.plist */,
 			);
 			path = CleanView;
@@ -480,7 +491,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5D43A291D6339E9000922B2 /* SignupViewController.swift in Sources */,
-				C5D439FD1D633435000922B2 /* ViewController.swift in Sources */,
+				C5D439FD1D633435000922B2 /* LoginViewController.swift in Sources */,
+				C56FE1B11D8942900004CB80 /* CircleProgressView.swift in Sources */,
 				C5D439FB1D633435000922B2 /* AppDelegate.swift in Sources */,
 				C5D43AB11D65DA73000922B2 /* MainViewController.swift in Sources */,
 			);
