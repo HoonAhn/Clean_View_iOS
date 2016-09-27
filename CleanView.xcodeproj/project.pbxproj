@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		0DD6ACC2B24CCA8D90DFA035 /* Pods_CleanView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0119AC165764CF1DCFDAA5AD /* Pods_CleanView.framework */; };
 		965E7A2B20126C3631877262 /* Pods_CleanViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05919DB60BCA155CE90C91E0 /* Pods_CleanViewTests.framework */; };
+		C543A5911D983EAC00E16724 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D439FC1D633435000922B2 /* LoginViewController.swift */; };
+		C555BA5D1D98E53900CFBC79 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555BA5C1D98E53900CFBC79 /* MainNavigationController.swift */; };
 		C56FE1311D869D800004CB80 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C56FE1331D869D800004CB80 /* InfoPlist.strings */; };
 		C56FE1B11D8942900004CB80 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56FE1B01D8942900004CB80 /* CircleProgressView.swift */; };
 		C597C4771D7D01C200DD55FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C597C4761D7D01C200DD55FA /* GoogleService-Info.plist */; };
 		C5D439FB1D633435000922B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D439FA1D633435000922B2 /* AppDelegate.swift */; };
-		C5D439FD1D633435000922B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D439FC1D633435000922B2 /* LoginViewController.swift */; };
 		C5D43A001D633435000922B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5D439FE1D633435000922B2 /* Main.storyboard */; };
 		C5D43A021D633435000922B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5D43A011D633435000922B2 /* Assets.xcassets */; };
 		C5D43A051D633435000922B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5D43A031D633435000922B2 /* LaunchScreen.storyboard */; };
@@ -50,6 +51,10 @@
 		7FF9D4187D35CD4C830790A3 /* Pods_CleanViewUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CleanViewUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95288116340C321608DB4BDB /* Pods-CleanViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanViewTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CleanViewTests/Pods-CleanViewTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA1176E58E87D866BFDCBBA2 /* Pods-CleanViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanViewUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CleanViewUITests/Pods-CleanViewUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C555BA591D98467B00CFBC79 /* CleanView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CleanView.entitlements; sourceTree = "<group>"; };
+		C555BA5A1D98470800CFBC79 /* development.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = development.entitlements; sourceTree = "<group>"; };
+		C555BA5B1D98473F00CFBC79 /* production.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = production.entitlements; sourceTree = "<group>"; };
+		C555BA5C1D98E53900CFBC79 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C56FE1321D869D800004CB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C56FE1341D869D820004CB80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C56FE1351D869E280004CB80 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -172,6 +177,7 @@
 		C5D439F91D633435000922B2 /* CleanView */ = {
 			isa = PBXGroup;
 			children = (
+				C555BA591D98467B00CFBC79 /* CleanView.entitlements */,
 				C56FE1AF1D8942750004CB80 /* CircleProgressView */,
 				C56FE12E1D869CDB0004CB80 /* Supporting Files */,
 				C5D43AB21D687943000922B2 /* image */,
@@ -179,11 +185,14 @@
 				C5D43A281D6339E9000922B2 /* SignupViewController.swift */,
 				C5D439FC1D633435000922B2 /* LoginViewController.swift */,
 				C5D43AB01D65DA73000922B2 /* MainViewController.swift */,
+				C555BA5C1D98E53900CFBC79 /* MainNavigationController.swift */,
 				C5D439FE1D633435000922B2 /* Main.storyboard */,
 				C5D43A031D633435000922B2 /* LaunchScreen.storyboard */,
 				C5D43A011D633435000922B2 /* Assets.xcassets */,
 				C5D43A061D633435000922B2 /* Info.plist */,
 				C597C4761D7D01C200DD55FA /* GoogleService-Info.plist */,
+				C555BA5A1D98470800CFBC79 /* development.entitlements */,
+				C555BA5B1D98473F00CFBC79 /* production.entitlements */,
 			);
 			path = CleanView;
 			sourceTree = "<group>";
@@ -285,12 +294,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = AHN;
 				TargetAttributes = {
 					C5D439F61D633435000922B2 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9S6RTY4596;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -302,10 +312,12 @@
 					};
 					C5D43A0A1D633436000922B2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = C5D439F61D633435000922B2;
 					};
 					C5D43A151D633436000922B2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = C5D439F61D633435000922B2;
 					};
 				};
@@ -490,10 +502,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C555BA5D1D98E53900CFBC79 /* MainNavigationController.swift in Sources */,
 				C5D43A291D6339E9000922B2 /* SignupViewController.swift in Sources */,
-				C5D439FD1D633435000922B2 /* LoginViewController.swift in Sources */,
 				C56FE1B11D8942900004CB80 /* CircleProgressView.swift in Sources */,
 				C5D439FB1D633435000922B2 /* AppDelegate.swift in Sources */,
+				C543A5911D983EAC00E16724 /* LoginViewController.swift in Sources */,
 				C5D43AB11D65DA73000922B2 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -578,8 +592,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -613,6 +629,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -623,8 +640,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -643,6 +662,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -652,6 +672,7 @@
 			baseConfigurationReference = F44397FB2E59DF4B3044DAF8 /* Pods-CleanView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CleanView/CleanView.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CleanView/Info.plist;
@@ -660,6 +681,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleanview.CleanView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f4a51dc2-363f-45c9-b56f-64d28bfb8af7";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -668,6 +690,7 @@
 			baseConfigurationReference = 19FCF34D026F844F4403C188 /* Pods-CleanView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CleanView/CleanView.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sanghoon Ahn (UAVX5YMMCD)";
 				INFOPLIST_FILE = CleanView/Info.plist;
@@ -676,6 +699,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleanview.CleanView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f4a51dc2-363f-45c9-b56f-64d28bfb8af7";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -688,6 +712,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AHN.CleanViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanView.app/CleanView";
 			};
 			name = Debug;
@@ -701,6 +726,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AHN.CleanViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanView.app/CleanView";
 			};
 			name = Release;
@@ -713,6 +739,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AHN.CleanViewUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = CleanView;
 			};
 			name = Debug;
@@ -725,6 +752,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AHN.CleanViewUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = CleanView;
 			};
 			name = Release;

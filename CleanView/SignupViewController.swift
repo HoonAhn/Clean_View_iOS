@@ -46,7 +46,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         */
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.newUsernameTextField.becomeFirstResponder()
     }
     override func didReceiveMemoryWarning() {
@@ -54,7 +54,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     // 키보드 이벤트를 View Controller에서 직접 처리
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.isEqual(self.newUsernameTextField)){
             self.newPasswordTextField.becomeFirstResponder()
         }else if(textField.isEqual(self.newPasswordTextField)){
@@ -66,22 +66,22 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.newUsernameTextField.resignFirstResponder()
         self.newPasswordTextField.resignFirstResponder()
         self.confirmPasswordTextField.resignFirstResponder()
         self.newPhoneTextField.resignFirstResponder()
     }
     // 유저에게 기본 알람을 보낼 수 있는 함수
-    func alertUser(title:String, body:String) {
-        let alert = UIAlertController(title: title, message: body, preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: "확인", style: .Cancel, handler: nil)
+    func alertUser(_ title:String, body:String) {
+        let alert = UIAlertController(title: title, message: body, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: false, completion: nil)
+        self.present(alert, animated: false, completion: nil)
     }
     
     // 회원 가입 제출 버튼
-    @IBAction func onSignupButton(sender: AnyObject) {
+    @IBAction func onSignupButton(_ sender: AnyObject) {
         
         let id = newUsernameTextField.text
         let pw = newPasswordTextField.text
@@ -108,23 +108,23 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     // 회원 가입 취소 버튼
-    @IBAction func onCancelButton(sender: AnyObject) {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func onCancelButton(_ sender: AnyObject) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     // 서버로 통신
-    func postToServer(username:String ,password:String ,phone:String){
+    func postToServer(_ username:String ,password:String ,phone:String){
         print("회원 가입 시도")
         
-        let url : NSURL = NSURL(string: "http://52.78.53.87/ffff.php")!
+        let url : URL = URL(string: "http://52.78.53.87/ffff.php")!
         
-        let request : NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        var request = URLRequest(url: url)
         
         let bodydata = "id=\(username)&password=\(password)&phone=\(phone)"
         print("\(bodydata) 가 들어간당")
-        request.HTTPMethod = "POST"
-        request.HTTPBody = bodydata.dataUsingEncoding(NSUTF8StringEncoding)
+        request.httpMethod = "POST"
+        request.httpBody = bodydata.data(using: String.Encoding.utf8)
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
             if error != nil{
                 print("error = \(error)")
@@ -132,16 +132,16 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             }
             print("response = \(response)")
             
-            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            let responseString = String(data: data!, encoding: String.Encoding.utf8)
             print("responseString = \(responseString)")
             if (responseString == "query error"){
-                dispatch_async(dispatch_get_main_queue()){
+                DispatchQueue.main.async{
                     self.alertUser("경고", body: "이미 존재하는 아이디입니다.")
                 }
             } else {
                 print("회원 가입")
-                dispatch_async(dispatch_get_main_queue()){
-                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                DispatchQueue.main.async{
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
                 }
             }
         }
@@ -152,8 +152,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
         
-        let keyboardFlexBarButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let keyboardDoneBarButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action:"doneEditing")
+        let keyboardFlexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let keyboardDoneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action:#selector(SignupViewController.doneEditing))
         
         keyboardToolbar.items = [keyboardFlexBarButton,keyboardDoneBarButton]
         newUsernameTextField.inputAccessoryView = keyboardToolbar
@@ -162,7 +162,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         newPhoneTextField.inputAccessoryView = keyboardToolbar
     }
     // 현재 활성화 되어 있는 TextField
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
     }
     
