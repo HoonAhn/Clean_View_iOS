@@ -50,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("######App is Active")
             completionHandler(.newData)
         }
-        if let tempMessage = userInfo["aps"] {
-            /*
+        if let tempMessage = userInfo["aps"], let tempbody = userInfo["body"]{
+            
             print("Message : \(tempMessage)")
             
             var hostVC = self.window?.rootViewController
@@ -59,24 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 hostVC = next
             }
             
-            let alert = UIAlertController(title: "완료 알림", message: "\(userInfo["gcm.notification.message"])", preferredStyle: .alert)
+            let alert = UIAlertController(title: "완료 알림", message: "\(tempbody as! String)", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
             hostVC!.present(alert, animated: true, completion: nil)
-            */
-            if (userInfo["gcm.notification.message"] != nil){
-                print("==========로컬알림 고고")
-                let notification = UILocalNotification()
-                notification.alertBody = userInfo["gcm.notification.message"] as? String // text that will be displayed in the notification
-                notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-                notification.fireDate = Date.init() // todo item due date (when notification will be fired). immediately here
-                notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-                UIApplication.shared.scheduleLocalNotification(notification)
-            }
-
-            
-            
-            
+ 
         } else {
             print("message ID Error")
         }

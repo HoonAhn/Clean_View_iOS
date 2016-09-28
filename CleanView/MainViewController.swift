@@ -11,24 +11,53 @@ import Firebase
 
 class MainViewController: UIViewController {
 
+    @IBOutlet var washer1View: UIView!
+    @IBOutlet var washer2View: UIView!
+    @IBOutlet var dryer1View: UIView!
+    @IBOutlet var dryer2View: UIView!
+    
+    
     @IBOutlet var washer1Button: UIButton!
     @IBOutlet var washer2Button: UIButton!
     @IBOutlet var dryer1Button: UIButton!
     @IBOutlet var dryer2Button: UIButton!
     
+    @IBOutlet var washer1NameLabel: UILabel!
+    @IBOutlet var washer2NameLabel: UILabel!
+    @IBOutlet var dryer1NameLabel: UILabel!
+    @IBOutlet var dryer2NameLabel: UILabel!
+    
+    @IBOutlet var washer1PercentLabel: UILabel!
+    @IBOutlet var washer2PercentLabel: UILabel!
+    
+    @IBOutlet var washer1StatusLabel: UILabel!
+    @IBOutlet var washer2StatusLabel: UILabel!
     @IBOutlet var dryer1StatusLabel: UILabel!
     @IBOutlet var dryer2StatusLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // UserDefaults 에 저장된 딕셔너리를 불러와 세탁기의 상태 파악
-        
         DispatchQueue.main.async {
             self.getDeviceInfoFromServer()
         }
         // Do any additional setup after loading the view.
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        washer1View.layer.cornerRadius = 7
+        washer2View.layer.cornerRadius = 7
+        dryer1View.layer.cornerRadius = 7
+        dryer2View.layer.cornerRadius = 7
+        
+        washer1NameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), thickness: 2)
+        washer2NameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), thickness: 2)
+        dryer1NameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), thickness: 2)
+        dryer2NameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), thickness: 2)
+        
+        // 세탁기를 예약한 내역
+        // UserDefaults 에 저장된 딕셔너리를 불러와 세탁기의 상태 파악
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -208,4 +237,34 @@ class MainViewController: UIViewController {
     }
     */
 
+}
+
+extension CALayer {
+    
+    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+        
+        var border = CALayer()
+        
+        switch edge {
+        case UIRectEdge.top:
+            border.frame = CGRect (x: 0, y: 0, width: self.frame.height, height: thickness)
+            break
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x:0, y:self.frame.height - thickness, width: UIScreen.main.bounds.width, height: thickness)
+            break
+        case UIRectEdge.left:
+            border.frame = CGRect(x: 0, y: 0, width: thickness, height: self.frame.height)
+            break
+        case UIRectEdge.right:
+            border.frame = CGRect(x: self.frame.width - thickness, y: 0, width: thickness, height: self.frame.height)
+            break
+        default:
+            break
+        }
+        
+        border.backgroundColor = color.cgColor;
+        
+        self.addSublayer(border)
+    }
+    
 }

@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "KakaoTalk_Photo_2016-09-22-20-55-16_99.png",
       "scale" : "1x"
     },
     {
@@ -10,7 +11,6 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "KakaoTalk_Photo_2016-09-22-20-55-16_99.png",
       "scale" : "3x"
     }
   ],

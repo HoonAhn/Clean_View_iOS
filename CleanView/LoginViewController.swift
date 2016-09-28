@@ -11,8 +11,11 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var UsernameTextField: UITextField!
-    
     @IBOutlet var PasswordTextField: UITextField!
+    
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var signinButton: UIButton!
+    
     
     func refreshView() {
         UsernameTextField.text = ""
@@ -96,6 +99,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         let autoLoginInfo = UserDefaults.standard
         if let autoLoginID = autoLoginInfo.string(forKey: "ID"){
             if let autoLoginPW = autoLoginInfo.string(forKey: "PW"){

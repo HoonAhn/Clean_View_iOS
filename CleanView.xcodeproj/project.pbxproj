@@ -23,6 +23,7 @@
 		C5D43A291D6339E9000922B2 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D43A281D6339E9000922B2 /* SignupViewController.swift */; };
 		C5D43AB11D65DA73000922B2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D43AB01D65DA73000922B2 /* MainViewController.swift */; };
 		C5D43AB61D6879B6000922B2 /* CleanViewLogo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C5D43AB51D6879B6000922B2 /* CleanViewLogo.jpeg */; };
+		C5EE72651D9C11A000F425A7 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EE72641D9C11A000F425A7 /* SettingTableViewController.swift */; };
 		E39AB9F49DF2686D31966502 /* Pods_CleanViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF9D4187D35CD4C830790A3 /* Pods_CleanViewUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		C5D43A281D6339E9000922B2 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C5D43AB01D65DA73000922B2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5D43AB51D6879B6000922B2 /* CleanViewLogo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CleanViewLogo.jpeg; sourceTree = "<group>"; };
+		C5EE72641D9C11A000F425A7 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		E4376018858CC6A238D1170A /* Pods-CleanViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanViewTests/Pods-CleanViewTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F44397FB2E59DF4B3044DAF8 /* Pods-CleanView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanView/Pods-CleanView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 				C5D439FC1D633435000922B2 /* LoginViewController.swift */,
 				C5D43AB01D65DA73000922B2 /* MainViewController.swift */,
 				C555BA5C1D98E53900CFBC79 /* MainNavigationController.swift */,
+				C5EE72641D9C11A000F425A7 /* SettingTableViewController.swift */,
 				C5D439FE1D633435000922B2 /* Main.storyboard */,
 				C5D43A031D633435000922B2 /* LaunchScreen.storyboard */,
 				C5D43A011D633435000922B2 /* Assets.xcassets */,
@@ -502,6 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5EE72651D9C11A000F425A7 /* SettingTableViewController.swift in Sources */,
 				C555BA5D1D98E53900CFBC79 /* MainNavigationController.swift in Sources */,
 				C5D43A291D6339E9000922B2 /* SignupViewController.swift in Sources */,
 				C56FE1B11D8942900004CB80 /* CircleProgressView.swift in Sources */,
