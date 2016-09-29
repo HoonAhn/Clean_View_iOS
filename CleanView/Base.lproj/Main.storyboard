@@ -61,12 +61,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디를 입력하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cJ0-gt-PCP">
-                                <frame key="frameInset" minX="72" minY="345" width="231" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="아이디" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scb-UD-0Ft">
                                 <frame key="frameInset" minX="72" minY="316" width="231" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -85,7 +79,13 @@
                                 <frame key="frameInset" minX="72" minY="412" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디를 입력하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cJ0-gt-PCP">
+                                <frame key="frameInset" minX="72" minY="345" width="231" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -341,11 +341,13 @@
                         <outlet property="washer1Button" destination="DDx-VW-7vL" id="8ah-M0-zEc"/>
                         <outlet property="washer1NameLabel" destination="xEU-ff-kv4" id="D2v-h0-jZv"/>
                         <outlet property="washer1PercentLabel" destination="vP1-kg-OP3" id="EiR-vE-8c5"/>
+                        <outlet property="washer1ProgressBarView" destination="Bvc-65-AQt" id="7cl-jG-3Tp"/>
                         <outlet property="washer1StatusLabel" destination="G8e-Cs-Ld6" id="LCp-85-sMU"/>
                         <outlet property="washer1View" destination="KTs-DP-BlX" id="c9G-DQ-r5m"/>
                         <outlet property="washer2Button" destination="FiW-hG-T47" id="afK-2X-vqd"/>
                         <outlet property="washer2NameLabel" destination="TMC-pq-sTr" id="Uj2-rY-Kw5"/>
                         <outlet property="washer2PercentLabel" destination="Rhu-Eh-1co" id="3xQ-j1-7ZQ"/>
+                        <outlet property="washer2ProgressBarView" destination="M5f-dw-6ek" id="9g4-fw-Nju"/>
                         <outlet property="washer2StatusLabel" destination="eja-d9-kvN" id="qzT-9q-gPC"/>
                         <outlet property="washer2View" destination="zlI-vB-v4A" id="Hp4-7N-Pqg"/>
                     </connections>
@@ -353,25 +355,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsZ-0W-2vw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1633" y="336"/>
-        </scene>
-        <!--설정-->
-        <scene sceneID="Gd2-cC-uIb">
-            <objects>
-                <viewController id="Xbq-KF-IYW" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EiK-qf-a4a"/>
-                        <viewControllerLayoutGuide type="bottom" id="cVT-hP-x1h"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2in-I2-d1x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="설정" id="IgG-Tb-baf"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jOb-Ug-PmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3119" y="336"/>
         </scene>
         <!--Setting-->
         <scene sceneID="YIO-Bq-Mdd">
@@ -450,7 +433,7 @@
                                 <frame key="frameInset" minX="72" minY="257" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Aay-93-2Ov" id="c8m-ls-1UF"/>
                                 </connections>
@@ -466,7 +449,7 @@
                                 <frame key="frameInset" minX="72" minY="114" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
                                 <connections>
                                     <outlet property="delegate" destination="Aay-93-2Ov" id="009-Qf-Znn"/>
                                 </connections>
@@ -489,7 +472,7 @@
                                 <frame key="frameInset" minX="72" minY="186" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Aay-93-2Ov" id="01V-aP-KgF"/>
                                 </connections>
@@ -498,7 +481,7 @@
                                 <frame key="frameInset" minX="72" minY="324" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                                 <connections>
                                     <outlet property="delegate" destination="Aay-93-2Ov" id="5IV-3s-0vS"/>
                                 </connections>

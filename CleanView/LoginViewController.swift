@@ -17,6 +17,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var signinButton: UIButton!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.UsernameTextField.delegate = self
+        self.PasswordTextField.delegate = self
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let autoLoginInfo = UserDefaults.standard
+        if let autoLoginID = autoLoginInfo.string(forKey: "ID"){
+            if let autoLoginPW = autoLoginInfo.string(forKey: "PW"){
+                print("자동 로그인 가능")
+                get(autoLoginID, password: autoLoginPW)
+            }
+        }
+        self.UsernameTextField.becomeFirstResponder()
+    }
+    
     func refreshView() {
         UsernameTextField.text = ""
         PasswordTextField.text = ""
@@ -78,37 +105,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: false, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.UsernameTextField.delegate = self
-        self.PasswordTextField.delegate = self
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        // 이미지 불러오기
-        /*
-        if let path = NSBundle.mainBundle().pathForResource("CleanViewLogo", ofType:"jpeg") {
-            LogoImageView.image = UIImage(named: path)
-        }
-        */
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        let autoLoginInfo = UserDefaults.standard
-        if let autoLoginID = autoLoginInfo.string(forKey: "ID"){
-            if let autoLoginPW = autoLoginInfo.string(forKey: "PW"){
-                print("자동 로그인 가능")
-                get(autoLoginID, password: autoLoginPW)
-            }
-        }
-        self.UsernameTextField.becomeFirstResponder()
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.isEqual(self.UsernameTextField)){
