@@ -40,8 +40,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("자동 로그인 가능")
                 get(autoLoginID, password: autoLoginPW)
             }
+        } else {
+            self.UsernameTextField.becomeFirstResponder()
+            let alarmBool = UserDefaults.standard
+            alarmBool.set(0, forKey: "device1")
+            alarmBool.set(0, forKey: "device2")
+            alarmBool.set(0, forKey: "device3")
+            alarmBool.set(0, forKey: "device4")
+            
         }
-        self.UsernameTextField.becomeFirstResponder()
     }
     
     func refreshView() {

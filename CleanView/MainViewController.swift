@@ -39,17 +39,33 @@ class MainViewController: UIViewController {
     
     let NF = NumberFormatter()
     let DF = DateFormatter()
+    var timer: Timer?
     let washerDuration:Double = 35 * 60 // 세탁 시간 35분을 초단위로 표현
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    var multiplier = 1.0
+    var alarmBool = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.getDeviceInfoFromServer()
-        }
+        
+        let numOfPlaces = 2.0
+        multiplier = pow(10.0, numOfPlaces)
+        
         // Do any additional setup after loading the view.
+        
     }
-
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.getDeviceInfoFromServer()
+        
+        self.changeAlarmButton(deviceNum: 1, status: alarmBool.integer(forKey: "device1"))
+        self.changeAlarmButton(deviceNum: 2, status: alarmBool.integer(forKey: "device2"))
+        self.changeAlarmButton(deviceNum: 3, status: alarmBool.integer(forKey: "device3"))
+        self.changeAlarmButton(deviceNum: 4, status: alarmBool.integer(forKey: "device4"))
+        
+//        DispatchQueue.main.async {
+//        
+//        }
         washer1View.layer.cornerRadius = 7
         washer2View.layer.cornerRadius = 7
         dryer1View.layer.cornerRadius = 7
@@ -60,12 +76,22 @@ class MainViewController: UIViewController {
         dryer1NameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), thickness: 2)
         dryer2NameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), thickness: 2)
         
-        NF.numberStyle = NumberFormatter.Style.decimal
+        NF.numberStyle = NumberFormatter.Style.percent
         NF.maximumFractionDigits = 2
         
         DF.dateFormat = "yyyy-MM-dd hh:mm:ss"
         DF.locale = Locale(identifier: "ko_KR")
+        DF.timeZone = TimeZone(identifier: "KST")
         
+        activityIndicator.isHidden = true
+        activityIndicator.center = self.view.center
+        self.view.addSubview(activityIndicator)
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(MainViewController.getDeviceInfoFromServer), userInfo: nil, repeats: true)
         // 세탁기를 예약한 내역
         // UserDefaults 에 저장된 딕셔너리를 불러와 세탁기의 상태 파악
         
@@ -152,7 +178,7 @@ class MainViewController: UIViewController {
                         self.alertUser("알림 취소", body: "\(deviceNum)번 세탁기의 알림을 받지 않습니다.")
                     }
                     self.changeAlarmButton(deviceNum: deviceNum, status: 0)
-                    
+                    self.alarmBool.set(0, forKey: "device\(deviceNum)")
                 }
                 task.resume()
             } else {
@@ -177,6 +203,7 @@ class MainViewController: UIViewController {
                         self.alertUser("알림 받기", body: "\(deviceNum)번 세탁기의 알림을 받습니다.")
                     }
                     self.changeAlarmButton(deviceNum: deviceNum, status: 1)
+                    self.alarmBool.set(1, forKey: "device\(deviceNum)")
                 }
                 task.resume()
             }
@@ -185,6 +212,10 @@ class MainViewController: UIViewController {
     }
     
     func getDeviceInfoFromServer() {
+        
+//        activityIndicator.isHidden = false
+//        activityIndicator.startAnimating()
+        
         let urlString = "http://52.78.53.87/timer/status.php"
         let url = URL(string: urlString)
         
@@ -195,43 +226,59 @@ class MainViewController: UIViewController {
                 do {
                     let parsedData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                     
-                    print("Overview of Parsed Data : \(parsedData)")
-                    
                     if let resultArray = parsedData["result"] as? [[String:Any]] {
-                        
-                        if let dicOfNum1 = resultArray[0] as? Dictionary,
-                            let dicOfNum2 = resultArray[1] as? Dictionary,
-                            let dicOfNum3 = resultArray[2] as? Dictionary,
-                            let dicOfNum4 = resultArray[3] as? Dictionary {
-                            
-                            if let statusOfNum1 = dicOfNum1["status"] as? String,
-                                let finishTimeOfNum1 = dicOfNum1["time"] as? String {
-                                print("1번 세탁기 정보 : 상태 = \(statusOfNum1) 완료 시간 = \(finishTimeOfNum1)")
-                                self.refreshWasherStatus(deviceNum: 1, status: statusOfNum1, finishTime: finishTimeOfNum1)
-                            } else {
-                                print("1번 오류")
-                            }
-                            if let statusOfNum2 = dicOfNum2["status"] as? String,
-                                let finishTimeOfNum2 = dicOfNum2["time"] as? String {
-                                print("2번 세탁기 정보 : 상태 = \(statusOfNum2) 완료 시간 = \(finishTimeOfNum2)")
-                                self.refreshWasherStatus(deviceNum: 2, status: statusOfNum2, finishTime: finishTimeOfNum2)
-                            } else {
-                                print("2번 오류")
-                            }
-                            if let statusOfNum3 = dicOfNum3["status"] as? String {
-                                print("1번 건조기 정보 : 상태 = \(statusOfNum3)")
-                                self.refreshDryerStatus(deviceNum: 1, status: statusOfNum3)
-                            } else {
-                                print("3번 오류")
-                            }
-                            if let statusOfNum4 = dicOfNum4["status"] as? String {
-                                print("2번 건조기 정보 : 상태 = \(statusOfNum4)")
-                                self.refreshDryerStatus(deviceNum: 2, status: statusOfNum4)
-                            } else {
-                                print("4번 오류")
-                            }
-                        } else {
-                            print("resultArray에서 dicOfNum 가져오는데서 오류")
+                        let dicOfNum1 = resultArray[0] //as? Dictionary
+                        let dicOfNum2 = resultArray[1] //as? Dictionary
+                        let dicOfNum3 = resultArray[2] //as? Dictionary
+                        let dicOfNum4 = resultArray[3] //as? Dictionary
+//                        if let statusOfNum1 = dicOfNum1["status"] as? String,
+//                            let finishTimeOfNum1 = dicOfNum1["time"] as? String {
+//                            print("1번 세탁기 정보 : 상태 = \(statusOfNum1) 완료 시간 = \(finishTimeOfNum1)")
+//                            self.refreshWasherStatus(deviceNum: 1, status: statusOfNum1, finishTime: finishTimeOfNum1)
+//                        } else {
+//                            print("1번 오류")
+//                        }
+//                        if let statusOfNum2 = dicOfNum2["status"] as? String,
+//                            let finishTimeOfNum2 = dicOfNum2["time"] as? String {
+//                            print("2번 세탁기 정보 : 상태 = \(statusOfNum2) 완료 시간 = \(finishTimeOfNum2)")
+//                            self.refreshWasherStatus(deviceNum: 2, status: statusOfNum2, finishTime: finishTimeOfNum2)
+//                        } else {
+//                            print("2번 오류")
+//                        }
+//                        if let statusOfNum3 = dicOfNum3["status"] as? String {
+//                            print("1번 건조기 정보 : 상태 = \(statusOfNum3)")
+//                            self.refreshDryerStatus(deviceNum: 1, status: statusOfNum3)
+//                        } else {
+//                            print("3번 오류")
+//                        }
+//                        if let statusOfNum4 = dicOfNum4["status"] as? String {
+//                            print("2번 건조기 정보 : 상태 = \(statusOfNum4)")
+//                            self.refreshDryerStatus(deviceNum: 2, status: statusOfNum4)
+//                        } else {
+//                            print("4번 오류")
+//                        }
+                        guard let statusOfNum1 = dicOfNum1["status"] as? String,
+                            let finishTimeOfNum1 = dicOfNum1["time"] as? String else {
+                            print("1번 오류")
+                            return
+                        }
+                        guard let statusOfNum2 = dicOfNum2["status"] as? String,
+                            let finishTimeOfNum2 = dicOfNum2["time"] as? String else {
+                            print("2번 오류")
+                            return
+                        }
+                        guard let statusOfNum3 = dicOfNum3["status"] as? String else {
+                            print("3번 오류")
+                            return
+                        }
+                        guard let statusOfNum4 = dicOfNum4["status"] as? String else {
+                            print("4번 오류")
+                            return
+                        }
+
+                        // Refresh 를 한번에
+                        DispatchQueue.main.async {
+                            self.refreshStatus(status1: statusOfNum1, finishTime1: finishTimeOfNum1, status2: statusOfNum2, finishTime2: finishTimeOfNum2, status3: statusOfNum3, status4: statusOfNum4)
                         }
                     } else {
                         print("result를 JSON에서 파싱하는데서 오류")
@@ -242,6 +289,8 @@ class MainViewController: UIViewController {
                 
             }
         }).resume()
+//        activityIndicator.isHidden = true
+//        activityIndicator.stopAnimating()
     }
     
     func changeAlarmButton(deviceNum:Int, status:Int){
@@ -266,29 +315,125 @@ class MainViewController: UIViewController {
         } else {
             if (deviceNum == 1) {
                 washer1Button.setTitle("알림취소", for: .normal)
-                washer1Button.setTitleColor(UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0), for: .normal)
+                washer1Button.setTitleColor(UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
                 washer1Button.setBackgroundImage(UIImage(named: "AlarmActive.png"), for: .normal)
             } else if (deviceNum == 2) {
                 washer2Button.setTitle("알림취소", for: .normal)
-                washer2Button.setTitleColor(UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0), for: .normal)
+                washer2Button.setTitleColor(UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
                 washer2Button.setBackgroundImage(UIImage(named: "AlarmActive.png"), for: .normal)
             } else if (deviceNum == 3) {
                 dryer1Button.setTitle("알림취소", for: .normal)
-                dryer1Button.setTitleColor(UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0), for: .normal)
+                dryer1Button.setTitleColor(UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
                 dryer1Button.setBackgroundImage(UIImage(named: "AlarmActive.png"), for: .normal)
             } else {
                 dryer2Button.setTitle("알림취소", for: .normal)
-                dryer2Button.setTitleColor(UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0), for: .normal)
+                dryer2Button.setTitleColor(UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
                 dryer2Button.setBackgroundImage(UIImage(named: "AlarmActive.png"), for: .normal)
             }
         }
     }
+    func refreshStatus(status1:String, finishTime1:String, status2:String, finishTime2:String ,status3:String, status4:String) {
+        // Refresh Washer
+        let currentDateString = DF.string(from: Date())
+        let currentDate = DF.date(from: currentDateString)
+        if status1 == "0" {
+            washer1NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
+            washer1PercentLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            washer1PercentLabel.text = "0%"
+            washer1StatusLabel.text = "사용 가능"
+            washer1StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+            washer1Button.setTitle("알림받기", for: .normal)
+            washer1Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
+            washer1Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
+            washer1Button.isEnabled = false
+        } else {
+            let finishDate1 = DF.date(from: finishTime1)
+            if let intervalSeconds = finishDate1?.timeIntervalSince(currentDate!) {
+                let intervalPercent = Double(intervalSeconds/washerDuration)
+                self.washer1ProgressBarView.progress = intervalPercent
+                let percentProgress = round(self.washer1ProgressBarView.progress as Double * multiplier) / multiplier
+                washer1PercentLabel.text = "\(NF.string(from: NSNumber(value: percentProgress))!)"
+                let intervalMinutes = Int(intervalSeconds/60)
+                washer1StatusLabel.text = "\(intervalMinutes)분"
+            }
+            
+            washer1NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            washer1PercentLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+            washer1StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            washer1Button.isEnabled = true
+        }
+        
+        if status2 == "0" {
+            washer2NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
+            washer2PercentLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            washer2PercentLabel.text = "0%"
+            washer2StatusLabel.text = "사용 가능"
+            washer2StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+            washer2Button.setTitle("알림받기", for: .normal)
+            washer2Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
+            washer2Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
+            washer2Button.isEnabled = false
+
+        } else {
+            let finishDate2 = DF.date(from: finishTime2)
+            if let intervalSeconds = finishDate2?.timeIntervalSince(currentDate!){
+                let intervalPercent = Double(intervalSeconds/washerDuration)
+                self.washer2ProgressBarView.progress = intervalPercent
+                let percentProgress = round(self.washer2ProgressBarView.progress as Double * multiplier) / multiplier
+                washer2PercentLabel.text = "\(NF.string(from: NSNumber(value: percentProgress))!)"
+                let intervalMinutes = Int(intervalSeconds/60)
+                washer2StatusLabel.text = "\(intervalMinutes)분"
+            }
+            
+            washer2NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            washer2PercentLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+            washer2StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            washer2Button.isEnabled = true
+        }
+        // Refresh Dryer
+        
+        if status3 == "0" {
+            dryer1NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
+            dryer1StatusLabel.text = "사용 가능"
+            dryer1StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+            dryer1Button.setTitle("알림받기", for: .normal)
+            dryer1Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
+            dryer1Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
+            dryer1Button.isEnabled = false
+
+        } else {
+            dryer1NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            dryer1StatusLabel.text = "사용 중"
+            dryer1StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            dryer1Button.isEnabled = true
+        }
+        
+        if status4 == "0" {
+            dryer2NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
+            dryer2StatusLabel.text = "사용 가능"
+            dryer2StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+            dryer2Button.setTitle("알림받기", for: .normal)
+            dryer2Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
+            dryer2Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
+            dryer2Button.isEnabled = false
+
+        } else {
+            dryer2NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            dryer2StatusLabel.text = "사용 중"
+            dryer2StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+            dryer2Button.isEnabled = true
+        }
+    
+    }
+    
+    /*
     func refreshWasherStatus(deviceNum:Int, status:String, finishTime:String) {
         // 세탁기가 사용 가능일 경우
         if (status == "0") {
             if (deviceNum == 1){
                 washer1NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
                 washer1PercentLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+                washer1PercentLabel.text = "0%"
                 washer1StatusLabel.text = "사용 가능"
                 washer1StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
                 washer1Button.setTitle("알림받기", for: .normal)
@@ -299,6 +444,7 @@ class MainViewController: UIViewController {
             else {
                 washer2NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
                 washer2PercentLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
+                washer2PercentLabel.text = "0%"
                 washer2StatusLabel.text = "사용 가능"
                 washer2StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
                 washer2Button.setTitle("알림받기", for: .normal)
@@ -309,35 +455,42 @@ class MainViewController: UIViewController {
         }
         // 세탁기가 사용 중일 경우
         else {
+            let currentDateString = DF.string(from: Date())
+            let currentDate = DF.date(from: currentDateString)
+            let finishDate = DF.date(from: finishTime)
+            
             if (deviceNum == 1){
-                let currentDate:Date = Date()
-                let finishDate = DF.date(from: finishTime)
-                let intervalSeconds = finishDate!.timeIntervalSince(currentDate)
-                let intervalPercent = Double(intervalSeconds/washerDuration)
-                self.washer1ProgressBarView.progress = intervalPercent
-                washer1PercentLabel.text = NF.string(from: NSNumber(value: self.washer1ProgressBarView.progress as Double))!
-                let intervalMinutes = Int(intervalSeconds/60)
-                washer1StatusLabel.text = "\(intervalMinutes)분"
+                if let intervalSeconds = finishDate?.timeIntervalSince(currentDate!) {
+                    let intervalPercent = Double(intervalSeconds/washerDuration)
+                    self.washer1ProgressBarView.progress = intervalPercent
+                    let percentProgress = round(self.washer1ProgressBarView.progress as Double * multiplier) / multiplier
+                    washer1PercentLabel.text = "\(NF.string(from: NSNumber(value: percentProgress))!)"
+                    let intervalMinutes = Int(intervalSeconds/60)
+                    washer1StatusLabel.text = "\(intervalMinutes)분"
+                }
                 
                 washer1NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
                 washer1PercentLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
                 washer1StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
                 washer1Button.isEnabled = true
+                washer1Button.setTitleColor(UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0), for: .normal)
             }
             else {
-                let currentDate:Date = Date()
-                let finishDate = DF.date(from: finishTime)
-                let intervalSeconds = finishDate!.timeIntervalSince(currentDate)
-                let intervalPercent = Double(intervalSeconds/washerDuration)
-                self.washer2ProgressBarView.progress = intervalPercent
-                washer2PercentLabel.text = NF.string(from: NSNumber(value: self.washer2ProgressBarView.progress as Double))!
-                let intervalMinutes = Int(intervalSeconds/60)
-                washer2StatusLabel.text = "\(intervalMinutes)분"
+                if let intervalSeconds = finishDate?.timeIntervalSince(currentDate!){
+                    let intervalPercent = Double(intervalSeconds/washerDuration)
+                    self.washer2ProgressBarView.progress = intervalPercent
+                    let percentProgress = round(self.washer2ProgressBarView.progress as Double * multiplier) / multiplier
+                    washer2PercentLabel.text = "\(NF.string(from: NSNumber(value: percentProgress))!)"
+                    let intervalMinutes = Int(intervalSeconds/60)
+                    washer2StatusLabel.text = "\(intervalMinutes)분"
+                }
                 
                 washer2NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
                 washer2PercentLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
                 washer2StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
                 washer2Button.isEnabled = true
+                washer2Button.setTitleColor(UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0), for: .normal)
+
             }
         }
     }
@@ -372,25 +525,19 @@ class MainViewController: UIViewController {
                 dryer1StatusLabel.text = "사용 중"
                 dryer1StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
                 dryer1Button.isEnabled = true
+                dryer1Button.setTitleColor(UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0), for: .normal)
+
             }
             else {
                 dryer2NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
                 dryer2StatusLabel.text = "사용 중"
                 dryer2StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
                 dryer2Button.isEnabled = true
+                dryer2Button.setTitleColor(UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0), for: .normal)
             }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+ */
 }
 
 extension CALayer {

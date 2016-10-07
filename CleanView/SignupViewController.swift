@@ -36,14 +36,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.confirmPasswordTextField.delegate = self
         self.newPhoneTextField.delegate = self
         
+        // 키보드에 버튼 추가
         addCancelDoneButton()
-        // Do any additional setup after loading the view.
-        /*
-        newUsernameTextField.delegate = self
-        newPasswordTextField.delegate = self
-        confirmPasswordTextField.delegate = self
-        newPhoneTextField.delegate = self
-        */
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -115,7 +109,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     func postToServer(_ username:String ,password:String ,phone:String){
         print("회원 가입 시도")
         
-        let url : URL = URL(string: "http://52.78.53.87/ffff.php")!
+        let url : URL = URL(string: "http://52.78.53.87/fcm/join.php")!
         
         var request = URLRequest(url: url)
         

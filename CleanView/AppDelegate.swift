@@ -39,17 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Receive Message
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        if (application.applicationState == UIApplicationState.inactive) {
-            print("######App is Inactive")
-            completionHandler(.newData)
-        } else if (application.applicationState == UIApplicationState.background) {
-            print("######App is Background")
-            completionHandler(.newData)
-        } else {
-            print("######App is Active")
-            completionHandler(.newData)
-        }
+//        
+//        if (application.applicationState == UIApplicationState.inactive) {
+//            print("######App is Inactive")
+//            completionHandler(.newData)
+//        } else if (application.applicationState == UIApplicationState.background) {
+//            print("######App is Background")
+//            completionHandler(.newData)
+//        } else {
+//            print("######App is Active")
+//            completionHandler(.newData)
+//        }
         if let tempMessage = userInfo["aps"], let tempbody = userInfo["body"]{
             
             print("Message : \(tempMessage)")
@@ -69,12 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         print("Original Message : ", userInfo)
-        
-        
-        
-        // Print message ID.
-        // create a corresponding local notification
-        
         
     }
     

@@ -354,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsZ-0W-2vw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1633" y="336"/>
+            <point key="canvasLocation" x="1670" y="336"/>
         </scene>
         <!--Setting-->
         <scene sceneID="YIO-Bq-Mdd">
@@ -369,7 +369,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cZe-m9-DBQ" id="JZr-QX-rNe">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -512,7 +512,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFZ-iC-QJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="152.80000000000001" y="1087.1064467766118"/>
+            <point key="canvasLocation" x="153" y="1030"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="tdc-F1-abV">
@@ -530,7 +530,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZJ-7B-IcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905.5" y="336.5"/>
+            <point key="canvasLocation" x="882" y="336"/>
         </scene>
     </scenes>
     <resources>
