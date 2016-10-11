@@ -1,28 +1,36 @@
 //
-//  MainNavigationController.swift
+//  PwChangeViewController.swift
 //  CleanView
 //
-//  Created by Sanghoon Ahn on 2016. 9. 26..
+//  Created by Sanghoon Ahn on 2016. 10. 11..
 //  Copyright © 2016년 AHN. All rights reserved.
 //
 
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class PwChangeViewController: UIViewController {
+
+    @IBOutlet var currentPWTextField: UITextField!
+    @IBOutlet var newPWTextField: UITextField!
+    @IBOutlet var newPWConfirmTestField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationBar.barTintColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
-        self.navigationBar.barStyle = UIBarStyle.black
-        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationBar.tintColor = UIColor.white
-        
+
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onSaveBarButton(_ sender: AnyObject) {
+    }
+    
+    @IBAction func onCancelBarButton(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 
     /*

@@ -2,7 +2,7 @@
 //  SettingTableViewController.swift
 //  CleanView
 //
-//  Created by Sanghoon Ahn on 2016. 9. 28..
+//  Created by Sanghoon Ahn on 2016. 10. 11..
 //  Copyright © 2016년 AHN. All rights reserved.
 //
 
@@ -10,14 +10,11 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
 
+    @IBOutlet var alarmSoundSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-//        self.navigationBar.barStyle = UIBarStyle.black
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,7 +26,35 @@ class SettingTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func alarmSoundSwitchChanged(_ sender: AnyObject) {
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let section = indexPath.section
+        let row = indexPath.row
+        print("Section: \(section)")
+        print("Row: \(row)")
+        
+        if (section == 1 && row == 2) {
+            print("로그아웃 되었습니다.")
+            let autoLoginInfo = UserDefaults.standard
+            if autoLoginInfo.string(forKey: "ID") != nil{
+                autoLoginInfo.removeObject(forKey: "ID")
+                autoLoginInfo.removeObject(forKey: "PW")
+            }
+            var vc = self.presentingViewController
+            while ((vc?.presentingViewController) != nil) {
+                vc = vc?.presentingViewController
+            }
+            vc?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    /*
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,7 +67,7 @@ class SettingTableViewController: UITableViewController {
         return 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
