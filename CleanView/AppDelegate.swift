@@ -17,10 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-//    override init() {
-//        super.init()
-//    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -28,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Add observer for InstanceID token refresh callback.
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotificaiton), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
-        
         
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         application.registerUserNotificationSettings(settings)
@@ -39,37 +34,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Receive Message
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//        
-//        if (application.applicationState == UIApplicationState.inactive) {
-//            print("######App is Inactive")
-//            completionHandler(.newData)
-//        } else if (application.applicationState == UIApplicationState.background) {
-//            print("######App is Background")
-//            completionHandler(.newData)
-//        } else {
-//            print("######App is Active")
-//            completionHandler(.newData)
-//        }
-        if let tempMessage = userInfo["aps"], let tempbody = userInfo["body"]{
-            
-            print("Message : \(tempMessage)")
+        print("******** didReceiveRemoteNotification called")
+        
+        if let tempMessage = userInfo["aps"] as? [String:Any],
+            let alertContent = tempMessage["alert"] as? [String:String],
+            let bodyAlert = alertContent["body"] {
             
             var hostVC = self.window?.rootViewController
             while let next = hostVC?.presentedViewController {
                 hostVC = next
             }
-            
-            let alert = UIAlertController(title: "완료 알림", message: "\(tempbody as! String)", preferredStyle: .alert)
+            let alert = UIAlertController(title: "완료 알림", message: "\(bodyAlert)", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
             hostVC!.present(alert, animated: true, completion: nil)
- 
+            
         } else {
             print("message ID Error")
+            print("Original Message : ", userInfo)
         }
-        
-        print("Original Message : ", userInfo)
-        
     }
     
     func tokenRefreshNotificaiton(_ notification: Notification) {

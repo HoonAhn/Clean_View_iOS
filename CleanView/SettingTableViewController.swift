@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingTableViewController: UITableViewController {
 
@@ -46,6 +47,8 @@ class SettingTableViewController: UITableViewController {
                 autoLoginInfo.removeObject(forKey: "ID")
                 autoLoginInfo.removeObject(forKey: "PW")
             }
+            removeAlarms()
+            
             var vc = self.presentingViewController
             while ((vc?.presentingViewController) != nil) {
                 vc = vc?.presentingViewController
@@ -54,6 +57,48 @@ class SettingTableViewController: UITableViewController {
         }
     }
     
+    func removeAlarms() {
+        let token = FIRInstanceID.instanceID().token()!
+        
+        for index in 1...4 {
+            let url = URL(string:"http://52.78.53.87/fcm/confirm.php")
+            var request = URLRequest(url: url!)
+            let bodydata = "num=\(index)&token=\(token)"
+            
+            request.httpMethod = "POST"
+            request.httpBody = bodydata.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                data, response, error in
+                if error != nil{
+                    print("error = \(error)")
+                    return
+                }
+                print("response = \(response)")
+                let responseString = String(data: data!, encoding: String.Encoding.utf8)
+                print("responseString = \(responseString)")
+                if (responseString == "1"){
+                    print("알림 취소")
+                    let url = URL(string:"http://52.78.53.87/fcm/delete.php")
+                    var request = URLRequest(url: url!)
+                    let bodydata = "num=\(index)&token=\(token)"
+                    
+                    request.httpMethod = "POST"
+                    request.httpBody = bodydata.data(using: String.Encoding.utf8)
+                    
+                    let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                        data, response, error in
+                        if error != nil{
+                            print("error = \(error)")
+                            return
+                        }
+                    }
+                    task.resume()
+                }
+            }
+            task.resume()
+        }
+    }
     /*
     // MARK: - Table view data source
 

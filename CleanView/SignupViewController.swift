@@ -16,15 +16,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var confirmPasswordTextField: UITextField!
     
-    @IBOutlet var newPhoneTextField: UITextField!
-    
     // Text Field 아래에 가이드를 표시하는 Labels
+    /*
     @IBOutlet var usernameDuplicatedLabel: UILabel!
     
     @IBOutlet var passwordNeededLabel: UILabel!
     
     @IBOutlet var passwordConfirmNeededLabel: UILabel!
-    
+    */
     var activeTextField = UITextField()
     
     
@@ -34,7 +33,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.newUsernameTextField.delegate = self
         self.newPasswordTextField.delegate = self
         self.confirmPasswordTextField.delegate = self
-        self.newPhoneTextField.delegate = self
         
         // 키보드에 버튼 추가
         addCancelDoneButton()
@@ -54,8 +52,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }else if(textField.isEqual(self.newPasswordTextField)){
             self.confirmPasswordTextField.becomeFirstResponder()
         }else if(textField.isEqual(self.confirmPasswordTextField)){
-            self.newPhoneTextField.becomeFirstResponder()
-        }else if(textField.isEqual(self.newPhoneTextField)){
             self.view.endEditing(true)
         }
         return true
@@ -64,7 +60,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.newUsernameTextField.resignFirstResponder()
         self.newPasswordTextField.resignFirstResponder()
         self.confirmPasswordTextField.resignFirstResponder()
-        self.newPhoneTextField.resignFirstResponder()
     }
     // 유저에게 기본 알람을 보낼 수 있는 함수
     func alertUser(_ title:String, body:String) {
@@ -80,13 +75,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         let id = newUsernameTextField.text
         let pw = newPasswordTextField.text
         let pwConfirm = confirmPasswordTextField.text
-        let phone = newPhoneTextField.text
         
         if (id != "") {
             if (pw != "") {
                 if (pwConfirm != "") {
                     if (pw == pwConfirm) {
-                        postToServer(id!, password: pw!, phone: phone!)
+                        postToServer(id!, password: pw!)
                     }else {
                         alertUser("경고", body: "비밀번호를 재확인해주십시오.")
                     }
@@ -106,14 +100,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     // 서버로 통신
-    func postToServer(_ username:String ,password:String ,phone:String){
+    func postToServer(_ username:String ,password:String){
         print("회원 가입 시도")
         
         let url : URL = URL(string: "http://52.78.53.87/fcm/join.php")!
         
         var request = URLRequest(url: url)
         
-        let bodydata = "id=\(username)&password=\(password)&phone=\(phone)"
+        let bodydata = "id=\(username)&password=\(password)"
         print("\(bodydata) 가 들어간당")
         request.httpMethod = "POST"
         request.httpBody = bodydata.data(using: String.Encoding.utf8)
@@ -153,7 +147,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         newUsernameTextField.inputAccessoryView = keyboardToolbar
         newPasswordTextField.inputAccessoryView = keyboardToolbar
         confirmPasswordTextField.inputAccessoryView = keyboardToolbar
-        newPhoneTextField.inputAccessoryView = keyboardToolbar
     }
     // 현재 활성화 되어 있는 TextField
     func textFieldDidBeginEditing(_ textField: UITextField) {

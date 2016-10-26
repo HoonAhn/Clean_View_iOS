@@ -91,7 +91,7 @@ class MainViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(MainViewController.getDeviceInfoFromServer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MainViewController.getDeviceInfoFromServer), userInfo: nil, repeats: true)
         // 세탁기를 예약한 내역
         // UserDefaults 에 저장된 딕셔너리를 불러와 세탁기의 상태 파악
         
@@ -137,78 +137,95 @@ class MainViewController: UIViewController {
     }
     
     func alarmCheck(_ deviceNum:Int){
-        
-        let token = FIRInstanceID.instanceID().token()!
-        
-        let url = URL(string:"http://52.78.53.87/fcm/confirm.php")
-        var request = URLRequest(url: url!)
-        let bodydata = "num=\(deviceNum)&token=\(token)"
-        
-        request.httpMethod = "POST"
-        request.httpBody = bodydata.data(using: String.Encoding.utf8)
-        
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            data, response, error in
-            if error != nil{
-                print("error = \(error)")
-                return
-            }
-            print("response = \(response)")
-            let responseString = String(data: data!, encoding: String.Encoding.utf8)
-            print("responseString = \(responseString)")
-            if (responseString == "1"){
-                print("알림 취소")
-                let url = URL(string:"http://52.78.53.87/fcm/delete.php")
-                var request = URLRequest(url: url!)
-                let bodydata = "num=\(deviceNum)&token=\(token)"
-                
-                request.httpMethod = "POST"
-                request.httpBody = bodydata.data(using: String.Encoding.utf8)
-                
-                let task = URLSession.shared.dataTask(with: request as URLRequest) {
-                    data, response, error in
-                    if error != nil{
-                        print("error = \(error)")
-                        return
-                    }
-                    print("response = \(response)")
-                    let responseString = String(data: data!, encoding: String.Encoding.utf8)
-                    print("responseString = \(responseString)")
-                    DispatchQueue.main.async {
-                        self.alertUser("알림 취소", body: "\(deviceNum)번 세탁기의 알림을 받지 않습니다.")
-                    }
-                    self.changeAlarmButton(deviceNum: deviceNum, status: 0)
-                    self.alarmBool.set(0, forKey: "device\(deviceNum)")
+        // 세탁기는 푸쉬 알림
+        if (deviceNum == 1 || deviceNum == 2) {
+            let token = FIRInstanceID.instanceID().token()!
+            
+            let url = URL(string:"http://52.78.53.87/fcm/confirm.php")
+            var request = URLRequest(url: url!)
+            let bodydata = "num=\(deviceNum)&token=\(token)"
+            
+            request.httpMethod = "POST"
+            request.httpBody = bodydata.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                data, response, error in
+                if error != nil{
+                    print("error = \(error)")
+                    return
                 }
-                task.resume()
-            } else {
-                print("알림 받기")
-                let url = URL(string:"http://52.78.53.87/fcm/laundry.php")
-                var request = URLRequest(url: url!)
-                let bodydata = "num=\(deviceNum)&token=\(token)"
-                
-                request.httpMethod = "POST"
-                request.httpBody = bodydata.data(using: String.Encoding.utf8)
-                
-                let task = URLSession.shared.dataTask(with: request as URLRequest) {
-                    data, response, error in
-                    if error != nil{
-                        print("error = \(error)")
-                        return
+                print("response = \(response)")
+                let responseString = String(data: data!, encoding: String.Encoding.utf8)
+                print("responseString = \(responseString)")
+                if (responseString == "1"){
+                    print("알림 취소")
+                    let url = URL(string:"http://52.78.53.87/fcm/delete.php")
+                    var request = URLRequest(url: url!)
+                    let bodydata = "num=\(deviceNum)&token=\(token)"
+                    
+                    request.httpMethod = "POST"
+                    request.httpBody = bodydata.data(using: String.Encoding.utf8)
+                    
+                    let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                        data, response, error in
+                        if error != nil{
+                            print("error = \(error)")
+                            return
+                        }
+                        print("response = \(response)")
+                        let responseString = String(data: data!, encoding: String.Encoding.utf8)
+                        print("responseString = \(responseString)")
+                        DispatchQueue.main.async {
+                            self.alertUser("알림 취소", body: "\(deviceNum)번 세탁기의 알림을 받지 않습니다.")
+                        }
+                        self.changeAlarmButton(deviceNum: deviceNum, status: 0)
+                        self.alarmBool.set(0, forKey: "device\(deviceNum)")
                     }
-                    print("response = \(response)")
-                    let responseString = String(data: data!, encoding: String.Encoding.utf8)
-                    print("responseString = \(responseString)")
-                    DispatchQueue.main.async {
-                        self.alertUser("알림 받기", body: "\(deviceNum)번 세탁기의 알림을 받습니다.")
+                    task.resume()
+                } else {
+                    print("알림 받기")
+                    let url = URL(string:"http://52.78.53.87/fcm/laundry.php")
+                    var request = URLRequest(url: url!)
+                    let bodydata = "num=\(deviceNum)&token=\(token)&device=ios"
+                    
+                    request.httpMethod = "POST"
+                    request.httpBody = bodydata.data(using: String.Encoding.utf8)
+                    
+                    let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                        data, response, error in
+                        if error != nil{
+                            print("error = \(error)")
+                            return
+                        }
+                        print("response = \(response)")
+                        let responseString = String(data: data!, encoding: String.Encoding.utf8)
+                        print("responseString = \(responseString)")
+                        DispatchQueue.main.async {
+                            self.alertUser("알림 받기", body: "\(deviceNum)번 세탁기의 알림을 받습니다.")
+                        }
+                        self.changeAlarmButton(deviceNum: deviceNum, status: 1)
+                        self.alarmBool.set(1, forKey: "device\(deviceNum)")
                     }
-                    self.changeAlarmButton(deviceNum: deviceNum, status: 1)
-                    self.alarmBool.set(1, forKey: "device\(deviceNum)")
+                    task.resume()
                 }
-                task.resume()
             }
+            task.resume()
         }
-        task.resume()
+        // 건조기는 로컬 알림
+        else {
+            let app = UIApplication.shared
+            let notifyAlarm = UILocalNotification()
+            let second = 10.0
+            let alarmType = Date().addingTimeInterval(second)
+            notifyAlarm.soundName = UILocalNotificationDefaultSoundName
+            notifyAlarm.alertTitle = "Clean View"
+            notifyAlarm.timeZone = TimeZone.current
+            notifyAlarm.alertBody = "\(deviceNum - 2)번 건조기가 완료되었습니다." // 알람 문구
+            notifyAlarm.fireDate = alarmType // 알람이 울릴 날짜
+            
+            app.scheduleLocalNotification(notifyAlarm)
+        }
+        
     }
     
     func getDeviceInfoFromServer() {
@@ -231,32 +248,7 @@ class MainViewController: UIViewController {
                         let dicOfNum2 = resultArray[1] //as? Dictionary
                         let dicOfNum3 = resultArray[2] //as? Dictionary
                         let dicOfNum4 = resultArray[3] //as? Dictionary
-//                        if let statusOfNum1 = dicOfNum1["status"] as? String,
-//                            let finishTimeOfNum1 = dicOfNum1["time"] as? String {
-//                            print("1번 세탁기 정보 : 상태 = \(statusOfNum1) 완료 시간 = \(finishTimeOfNum1)")
-//                            self.refreshWasherStatus(deviceNum: 1, status: statusOfNum1, finishTime: finishTimeOfNum1)
-//                        } else {
-//                            print("1번 오류")
-//                        }
-//                        if let statusOfNum2 = dicOfNum2["status"] as? String,
-//                            let finishTimeOfNum2 = dicOfNum2["time"] as? String {
-//                            print("2번 세탁기 정보 : 상태 = \(statusOfNum2) 완료 시간 = \(finishTimeOfNum2)")
-//                            self.refreshWasherStatus(deviceNum: 2, status: statusOfNum2, finishTime: finishTimeOfNum2)
-//                        } else {
-//                            print("2번 오류")
-//                        }
-//                        if let statusOfNum3 = dicOfNum3["status"] as? String {
-//                            print("1번 건조기 정보 : 상태 = \(statusOfNum3)")
-//                            self.refreshDryerStatus(deviceNum: 1, status: statusOfNum3)
-//                        } else {
-//                            print("3번 오류")
-//                        }
-//                        if let statusOfNum4 = dicOfNum4["status"] as? String {
-//                            print("2번 건조기 정보 : 상태 = \(statusOfNum4)")
-//                            self.refreshDryerStatus(deviceNum: 2, status: statusOfNum4)
-//                        } else {
-//                            print("4번 오류")
-//                        }
+
                         guard let statusOfNum1 = dicOfNum1["status"] as? String,
                             let finishTimeOfNum1 = dicOfNum1["time"] as? String else {
                             print("1번 오류")
@@ -275,11 +267,11 @@ class MainViewController: UIViewController {
                             print("4번 오류")
                             return
                         }
-
+                        self.refreshStatus(status1: statusOfNum1, finishTime1: finishTimeOfNum1, status2: statusOfNum2, finishTime2: finishTimeOfNum2, status3: statusOfNum3, status4: statusOfNum4)
                         // Refresh 를 한번에
-                        DispatchQueue.main.async {
-                            self.refreshStatus(status1: statusOfNum1, finishTime1: finishTimeOfNum1, status2: statusOfNum2, finishTime2: finishTimeOfNum2, status3: statusOfNum3, status4: statusOfNum4)
-                        }
+//                        DispatchQueue.main.async {
+//                            
+//                        }
                     } else {
                         print("result를 JSON에서 파싱하는데서 오류")
                     }
@@ -348,7 +340,9 @@ class MainViewController: UIViewController {
             washer1Button.isEnabled = false
         } else {
             let finishDate1 = DF.date(from: finishTime1)
+//            print("washer1 status is 1")
             if let intervalSeconds = finishDate1?.timeIntervalSince(currentDate!) {
+                
                 let intervalPercent = Double(intervalSeconds/washerDuration)
                 self.washer1ProgressBarView.progress = intervalPercent
                 let percentProgress = round(self.washer1ProgressBarView.progress as Double * multiplier) / multiplier
@@ -376,7 +370,9 @@ class MainViewController: UIViewController {
 
         } else {
             let finishDate2 = DF.date(from: finishTime2)
+//            print("washer2 status is 1")
             if let intervalSeconds = finishDate2?.timeIntervalSince(currentDate!){
+                
                 let intervalPercent = Double(intervalSeconds/washerDuration)
                 self.washer2ProgressBarView.progress = intervalPercent
                 let percentProgress = round(self.washer2ProgressBarView.progress as Double * multiplier) / multiplier
@@ -402,6 +398,7 @@ class MainViewController: UIViewController {
             dryer1Button.isEnabled = false
 
         } else {
+//            print("dryer1 status is 1")
             dryer1NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
             dryer1StatusLabel.text = "사용 중"
             dryer1StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
@@ -418,6 +415,7 @@ class MainViewController: UIViewController {
             dryer2Button.isEnabled = false
 
         } else {
+//            print("dryer2 status is 1")
             dryer2NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
             dryer2StatusLabel.text = "사용 중"
             dryer2StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)

@@ -26,7 +26,8 @@
 		C5D5B90D1DAC11F800C79BFB /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B90C1DAC11F800C79BFB /* GuideViewController.swift */; };
 		C5D5B90F1DAC12D400C79BFB /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B90E1DAC12D400C79BFB /* SettingTableViewController.swift */; };
 		C5D5B9111DAC1BC500C79BFB /* PwChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B9101DAC1BC500C79BFB /* PwChangeViewController.swift */; };
-		C5F2A8021DA88F1600318863 /* SettingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2A8011DA88F1600318863 /* SettingContent.swift */; };
+		C5D5B9131DBB649100C79BFB /* NoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B9121DBB649100C79BFB /* NoticeTableViewController.swift */; };
+		C5D5B9151DBF89C900C79BFB /* NoticeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B9141DBF89C900C79BFB /* NoticeContentViewController.swift */; };
 		E39AB9F49DF2686D31966502 /* Pods_CleanViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF9D4187D35CD4C830790A3 /* Pods_CleanViewUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,7 +89,8 @@
 		C5D5B90C1DAC11F800C79BFB /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		C5D5B90E1DAC12D400C79BFB /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		C5D5B9101DAC1BC500C79BFB /* PwChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwChangeViewController.swift; sourceTree = "<group>"; };
-		C5F2A8011DA88F1600318863 /* SettingContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingContent.swift; sourceTree = "<group>"; };
+		C5D5B9121DBB649100C79BFB /* NoticeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeTableViewController.swift; sourceTree = "<group>"; };
+		C5D5B9141DBF89C900C79BFB /* NoticeContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeContentViewController.swift; sourceTree = "<group>"; };
 		E4376018858CC6A238D1170A /* Pods-CleanViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanViewTests/Pods-CleanViewTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F44397FB2E59DF4B3044DAF8 /* Pods-CleanView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleanView/Pods-CleanView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,8 +197,9 @@
 				C555BA5C1D98E53900CFBC79 /* MainNavigationController.swift */,
 				C5D43AB01D65DA73000922B2 /* MainViewController.swift */,
 				C5D5B90E1DAC12D400C79BFB /* SettingTableViewController.swift */,
+				C5D5B9121DBB649100C79BFB /* NoticeTableViewController.swift */,
+				C5D5B9141DBF89C900C79BFB /* NoticeContentViewController.swift */,
 				C5D5B90C1DAC11F800C79BFB /* GuideViewController.swift */,
-				C5F2A8011DA88F1600318863 /* SettingContent.swift */,
 				C5D5B9101DAC1BC500C79BFB /* PwChangeViewController.swift */,
 				C5D439FE1D633435000922B2 /* Main.storyboard */,
 				C5D43A031D633435000922B2 /* LaunchScreen.storyboard */,
@@ -514,13 +517,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5F2A8021DA88F1600318863 /* SettingContent.swift in Sources */,
 				C5D5B90D1DAC11F800C79BFB /* GuideViewController.swift in Sources */,
 				C555BA5D1D98E53900CFBC79 /* MainNavigationController.swift in Sources */,
 				C5D43A291D6339E9000922B2 /* SignupViewController.swift in Sources */,
+				C5D5B9151DBF89C900C79BFB /* NoticeContentViewController.swift in Sources */,
 				C56FE1B11D8942900004CB80 /* CircleProgressView.swift in Sources */,
 				C5D439FB1D633435000922B2 /* AppDelegate.swift in Sources */,
 				C5D5B90F1DAC12D400C79BFB /* SettingTableViewController.swift in Sources */,
+				C5D5B9131DBB649100C79BFB /* NoticeTableViewController.swift in Sources */,
 				C5D5B9111DAC1BC500C79BFB /* PwChangeViewController.swift in Sources */,
 				C543A5911D983EAC00E16724 /* LoginViewController.swift in Sources */,
 				C5D43AB11D65DA73000922B2 /* MainViewController.swift in Sources */,
