@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 get(autoLoginID, password: autoLoginPW)
             }
         } else {
-            self.UsernameTextField.becomeFirstResponder()
+
             let alarmBool = UserDefaults.standard
             alarmBool.set(0, forKey: "device1")
             alarmBool.set(0, forKey: "device2")
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print("error = \(error)")
                     return
                 }
-                print("response = \(response)")
+//                print("response = \(response)")
                 let responseString = String(data: data!, encoding: String.Encoding.utf8)
                 print("responseString = \(responseString)")
                 if (responseString == "invalidid"){
@@ -88,8 +88,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let userLoginInfo = UserDefaults.standard
                     userLoginInfo.setValue(username, forKey: "ID")
                     userLoginInfo.setValue(password, forKey: "PW")
-                    
-                    print("저장된 유저 정보 : \(userLoginInfo)")
                     
                     if let mnc = self.storyboard?.instantiateViewController(withIdentifier: "MainNC") as? UINavigationController {
                         mnc.modalTransitionStyle = UIModalTransitionStyle.coverVertical

@@ -22,7 +22,7 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         self.navigationBar.barTintColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
-        self.navigationBar.barStyle = UIBarStyle.black
+        //self.navigationBar.barStyle = UIBarStyle.
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationBar.tintColor = UIColor.white
         
@@ -83,7 +83,7 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
                 print("error = \(error)")
                 return
             }
-            print("response = \(response)")
+//            print("response = \(response)")
             
             let responseString = String(data: data!, encoding: String.Encoding.utf8)
             print("responseString = \(responseString)")

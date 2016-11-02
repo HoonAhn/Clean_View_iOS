@@ -29,6 +29,9 @@ class SettingTableViewController: UITableViewController {
     }
     
     @IBAction func alarmSoundSwitchChanged(_ sender: AnyObject) {
+        
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -39,7 +42,15 @@ class SettingTableViewController: UITableViewController {
         let row = indexPath.row
         print("Section: \(section)")
         print("Row: \(row)")
-        
+/*
+        if (section == 0 && row == 1) {
+            guard let gtbc = self.storyboard?.instantiateViewController(withIdentifier: "GuideTBC") else {
+                print("gtbc error")
+                return
+            }
+            self.present(gtbc, animated: true, completion: nil)
+        }
+*/
         if (section == 1 && row == 2) {
             print("로그아웃 되었습니다.")
             let autoLoginInfo = UserDefaults.standard
@@ -74,7 +85,7 @@ class SettingTableViewController: UITableViewController {
                     print("error = \(error)")
                     return
                 }
-                print("response = \(response)")
+//                print("response = \(response)")
                 let responseString = String(data: data!, encoding: String.Encoding.utf8)
                 print("responseString = \(responseString)")
                 if (responseString == "1"){

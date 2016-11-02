@@ -1,36 +1,28 @@
 //
-//  GuideViewController.swift
+//  GuideTabBarController.swift
 //  CleanView
 //
-//  Created by Sanghoon Ahn on 2016. 10. 11..
+//  Created by Sanghoon Ahn on 2016. 10. 30..
 //  Copyright © 2016년 AHN. All rights reserved.
 //
 
 import UIKit
 
-class GuideViewController: UIViewController {
-
-    @IBOutlet var navigationBar: UINavigationBar!
+class GuideTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationBar.barTintColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
-        self.navigationBar.barStyle = UIBarStyle.black
-        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationBar.tintColor = UIColor.white
-        
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.title = "이용 안내"
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onDoneButton(_ sender: AnyObject) {
-        dismiss(animated: true, completion: nil)
-    }
 
     /*
     // MARK: - Navigation

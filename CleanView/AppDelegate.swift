@@ -11,15 +11,43 @@ import UIKit
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        print("******** didFinishLaunchingWithOptions called")
+        // new test
+        FIRApp.configure()
         
+        //create the notificationCenter
+        if #available(iOS 10.0, *) {
+            let center  = UNUserNotificationCenter.current()
+            center.delegate = self
+            // set the type as sound or badge
+            center.requestAuthorization(options: [.sound,.alert,.badge]) { (granted, error) in
+                // Enable or disable features based on authorization
+                
+            }
+            application.registerForRemoteNotifications()
+
+        } else {
+            // Fallback on earlier versions
+            NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotificaiton), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
+            
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+                /*
+        // launched by push noti
+        if (launchOptions != nil) {
+            print("did push arrived??? \nlauch option : \(launchOptions)")
+        }
         FIRApp.configure()
         
         // Add observer for InstanceID token refresh callback.
@@ -28,17 +56,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
+        */
+        
         
         return true
     }
     
     // Receive Message
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("******** didReceiveRemoteNotification called")
         
         if let tempMessage = userInfo["aps"] as? [String:Any],
             let alertContent = tempMessage["alert"] as? [String:String],
             let bodyAlert = alertContent["body"] {
+            
+            let alarmBool = UserDefaults.standard
+            
+            if (bodyAlert.hasPrefix("1")) {
+                alarmBool.set(0, forKey: "device1")
+            } else if (bodyAlert.hasPrefix("2")) {
+                alarmBool.set(0, forKey: "device2")
+            }
             
             var hostVC = self.window?.rootViewController
             while let next = hostVC?.presentedViewController {
@@ -54,6 +91,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Original Message : ", userInfo)
         }
     }
+    
+    // test
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Handle push from background or closed")
+        // if you set a member variable in didReceiveRemoteNotification, you  will know if this is from closed or background
+//        print("\(response.notification.request.content.userInfo)")
+        if let tempMessage = response.notification.request.content.userInfo["aps"] as? [String:Any],
+            let alertContent = tempMessage["alert"] as? [String:String],
+            let bodyAlert = alertContent["body"] {
+            
+            let alarmBool = UserDefaults.standard
+            
+            if (bodyAlert.hasPrefix("1")) {
+                alarmBool.set(0, forKey: "device1")
+            } else if (bodyAlert.hasPrefix("2")) {
+                alarmBool.set(0, forKey: "device2")
+            }
+            
+        } else {
+            print("message ID Error")
+            print("Original Message : ", response.notification.request.content.userInfo)
+        }
+    }
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("Handle push from foreground")
+        // custom code to handle push while app is in the foreground
+//        print("\(notification.request.content.userInfo)")
+        
+        if let tempMessage = notification.request.content.userInfo["aps"] as? [String:Any],
+            let alertContent = tempMessage["alert"] as? [String:String],
+            let bodyAlert = alertContent["body"] {
+            
+            let alarmBool = UserDefaults.standard
+            
+            if (bodyAlert.hasPrefix("1")) {
+                alarmBool.set(0, forKey: "device1")
+            } else if (bodyAlert.hasPrefix("2")) {
+                alarmBool.set(0, forKey: "device2")
+            }
+            
+            var hostVC = self.window?.rootViewController
+            while let next = hostVC?.presentedViewController {
+                hostVC = next
+            }
+            let alert = UIAlertController(title: "완료 알림", message: "\(bodyAlert)", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            hostVC!.present(alert, animated: true, completion: nil)
+            
+        } else {
+            print("message ID Error")
+            print("Original Message : ", notification.request.content.userInfo)
+        }
+
+    }
+    
+    //
     
     func tokenRefreshNotificaiton(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token(){
@@ -122,14 +218,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 
-    func registerForPushNotifications(_ application: UIApplication){
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
-    }
+//    func registerForPushNotifications(_ application: UIApplication){
+//        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//        application.registerUserNotificationSettings(settings)
+//    }
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         if notificationSettings.types != UIUserNotificationType() {
-            application.registerForRemoteNotifications()
+            print("*** notificationSettings.types != UIUserNotificationType() called")
+//            application.registerForRemoteNotifications()
         }
     }
     

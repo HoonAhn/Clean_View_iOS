@@ -1,38 +1,23 @@
 //
-//  NoticeContentViewController.swift
+//  DryerGuideViewController.swift
 //  CleanView
 //
-//  Created by Sanghoon Ahn on 2016. 10. 25..
+//  Created by Sanghoon Ahn on 2016. 10. 30..
 //  Copyright © 2016년 AHN. All rights reserved.
 //
 
 import UIKit
 
-class NoticeContentViewController: UIViewController {
+class DryerGuideViewController: UIViewController {
 
-    @IBOutlet var titleLabel: UILabel!
-    
-    @IBOutlet var dateLabel: UILabel!
-    
-    @IBOutlet var contentView: UIView!
-    
-    @IBOutlet var contentTextView: UITextView!
-    
-    var dictionaryOfNotice = [String:String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-        
-        titleLabel.text = dictionaryOfNotice["title"]
-        dateLabel.text = dictionaryOfNotice["date"]
-        contentTextView.text = dictionaryOfNotice["content"]
+        //self.navigationItem.title = "이용 안내"
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

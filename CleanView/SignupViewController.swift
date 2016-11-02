@@ -16,14 +16,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var confirmPasswordTextField: UITextField!
     
-    // Text Field 아래에 가이드를 표시하는 Labels
-    /*
-    @IBOutlet var usernameDuplicatedLabel: UILabel!
-    
-    @IBOutlet var passwordNeededLabel: UILabel!
-    
-    @IBOutlet var passwordConfirmNeededLabel: UILabel!
-    */
     var activeTextField = UITextField()
     
     
@@ -72,23 +64,38 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     // 회원 가입 제출 버튼
     @IBAction func onSignupButton(_ sender: AnyObject) {
         
-        let id = newUsernameTextField.text
-        let pw = newPasswordTextField.text
+        let rawId = newUsernameTextField.text
+        let rawPw = newPasswordTextField.text
         let pwConfirm = confirmPasswordTextField.text
-        
+        guard let id = rawId?.trim() else {
+            print("String trim error")
+            return
+        }
+        guard let pw = rawPw?.trim() else {
+            print("String trim error")
+            return
+        }
         if (id != "") {
-            if (pw != "") {
-                if (pwConfirm != "") {
-                    if (pw == pwConfirm) {
-                        postToServer(id!, password: pw!)
+            if (id.characters.count >= 4 && id.characters.count <= 10){
+                if (pw != "") {
+                    if (pw.characters.count >= 4 && pw.characters.count <= 12){
+                        if (pwConfirm != "") {
+                            if (pw == pwConfirm) {
+                                postToServer(id, password: pw)
+                            }else {
+                                alertUser("경고", body: "비밀번호를 재확인해주십시오.")
+                            }
+                        }else{
+                            alertUser("경고", body: "비밀번호 확인은 필수 입력사항입니다.")
+                        }
                     }else {
-                        alertUser("경고", body: "비밀번호를 재확인해주십시오.")
+                        alertUser("경고", body: "비밀번호의 길이는 공백없이 4 이상 12 이하입니다.")
                     }
                 }else{
-                    alertUser("경고", body: "비밀번호 확인은 필수 입력사항입니다.")
+                    alertUser("경고", body: "비밀번호는 필수 입력사항입니다.")
                 }
-            }else{
-                alertUser("경고", body: "비밀번호는 필수 입력사항입니다.")
+            }else {
+                alertUser("경고", body: "아이디의 길이는 공백없이 4 이상 10 이하입니다.")
             }
         }else{
             alertUser("경고", body: "아이디는 필수 입력사항입니다.")
@@ -99,11 +106,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onCancelButton(_ sender: AnyObject) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
     // 서버로 통신
     func postToServer(_ username:String ,password:String){
         print("회원 가입 시도")
         
-        let url : URL = URL(string: "http://52.78.53.87/fcm/join.php")!
+        let url : URL = URL(string: "http://52.78.53.87/join.php")!
         
         var request = URLRequest(url: url)
         
@@ -118,7 +126,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 print("error = \(error)")
                 return
             }
-            print("response = \(response)")
+//            print("response = \(response)")
             
             let responseString = String(data: data!, encoding: String.Encoding.utf8)
             print("responseString = \(responseString)")
@@ -167,4 +175,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     */
 
+}
+
+extension String
+{
+    func trim() -> String
+    {
+        return self.trimmingCharacters(in: NSCharacterSet.whitespaces)
+    }
 }
