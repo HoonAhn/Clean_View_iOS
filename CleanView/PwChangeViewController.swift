@@ -132,14 +132,18 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
         
         if (currentPW != "" && currentPW == password) {
             if (newPW != "") {
-                if (confirmPW != "") {
-                    if (newPW == confirmPW) {
-                        postToServer(id: username, newPassword : newPW!)
-                    } else {
-                        alertUser("경고", body: "비밀번호를 재확인해주십시오.")
+                if (newPW.characters.count >= 4 && newPW.characters.count <= 12){
+                    if (confirmPW != "") {
+                        if (newPW == confirmPW) {
+                            postToServer(id: username, newPassword : newPW!)
+                        } else {
+                            alertUser("경고", body: "비밀번호를 재확인해주십시오.")
+                        }
+                    } else{
+                        alertUser("경고", body: "비밀번호 확인은 필수 입력사항입니다.")
                     }
-                } else{
-                    alertUser("경고", body: "비밀번호 확인은 필수 입력사항입니다.")
+                } else {
+                    alertUser("경고", body: "비밀번호의 길이는 공백없이 4 이상 12 이하입니다.")
                 }
             } else{
                 alertUser("경고", body: "비밀번호는 필수 입력사항입니다.")

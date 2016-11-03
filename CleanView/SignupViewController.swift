@@ -16,11 +16,18 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var confirmPasswordTextField: UITextField!
     
+    @IBOutlet var navigationBar: UINavigationBar!
+    
     var activeTextField = UITextField()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationBar.barTintColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+        //self.navigationBar.barStyle = UIBarStyle.
+        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationBar.tintColor = UIColor.white
         
         self.newUsernameTextField.delegate = self
         self.newPasswordTextField.delegate = self

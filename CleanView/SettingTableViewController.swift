@@ -71,7 +71,7 @@ class SettingTableViewController: UITableViewController {
     func removeAlarms() {
         let token = FIRInstanceID.instanceID().token()!
         
-        for index in 1...4 {
+        for index in 1...2 {
             let url = URL(string:"http://52.78.53.87/fcm/confirm.php")
             var request = URLRequest(url: url!)
             let bodydata = "num=\(index)&token=\(token)"

@@ -24,7 +24,6 @@
 		C590E0B81DC6187A00518693 /* washer_guide_4.png in Resources */ = {isa = PBXBuildFile; fileRef = C590E0AF1DC6187A00518693 /* washer_guide_4.png */; };
 		C597C4771D7D01C200DD55FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C597C4761D7D01C200DD55FA /* GoogleService-Info.plist */; };
 		C598770D1DC5B2CB00F194A2 /* GuideTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C598770C1DC5B2CB00F194A2 /* GuideTabBarController.swift */; };
-		C598770F1DC5B87100F194A2 /* DryerGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C598770E1DC5B87100F194A2 /* DryerGuideViewController.swift */; };
 		C5D439FB1D633435000922B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D439FA1D633435000922B2 /* AppDelegate.swift */; };
 		C5D43A001D633435000922B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5D439FE1D633435000922B2 /* Main.storyboard */; };
 		C5D43A021D633435000922B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5D43A011D633435000922B2 /* Assets.xcassets */; };
@@ -33,7 +32,6 @@
 		C5D43A1B1D633436000922B2 /* CleanViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D43A1A1D633436000922B2 /* CleanViewUITests.swift */; };
 		C5D43A291D6339E9000922B2 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D43A281D6339E9000922B2 /* SignupViewController.swift */; };
 		C5D43AB11D65DA73000922B2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D43AB01D65DA73000922B2 /* MainViewController.swift */; };
-		C5D5B90D1DAC11F800C79BFB /* WasherGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B90C1DAC11F800C79BFB /* WasherGuideViewController.swift */; };
 		C5D5B90F1DAC12D400C79BFB /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B90E1DAC12D400C79BFB /* SettingTableViewController.swift */; };
 		C5D5B9111DAC1BC500C79BFB /* PwChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B9101DAC1BC500C79BFB /* PwChangeViewController.swift */; };
 		C5D5B9131DBB649100C79BFB /* NoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5B9121DBB649100C79BFB /* NoticeTableViewController.swift */; };
@@ -90,7 +88,6 @@
 		C590E0AF1DC6187A00518693 /* washer_guide_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = washer_guide_4.png; sourceTree = "<group>"; };
 		C597C4761D7D01C200DD55FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C598770C1DC5B2CB00F194A2 /* GuideTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTabBarController.swift; sourceTree = "<group>"; };
-		C598770E1DC5B87100F194A2 /* DryerGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DryerGuideViewController.swift; sourceTree = "<group>"; };
 		C5D439F71D633435000922B2 /* CleanView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D439FA1D633435000922B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5D439FC1D633435000922B2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +103,6 @@
 		C5D43A1C1D633436000922B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5D43A281D6339E9000922B2 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C5D43AB01D65DA73000922B2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		C5D5B90C1DAC11F800C79BFB /* WasherGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WasherGuideViewController.swift; sourceTree = "<group>"; };
 		C5D5B90E1DAC12D400C79BFB /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		C5D5B9101DAC1BC500C79BFB /* PwChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwChangeViewController.swift; sourceTree = "<group>"; };
 		C5D5B9121DBB649100C79BFB /* NoticeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeTableViewController.swift; sourceTree = "<group>"; };
@@ -220,8 +216,6 @@
 				C5D5B9121DBB649100C79BFB /* NoticeTableViewController.swift */,
 				C5D5B9141DBF89C900C79BFB /* NoticeContentViewController.swift */,
 				C598770C1DC5B2CB00F194A2 /* GuideTabBarController.swift */,
-				C5D5B90C1DAC11F800C79BFB /* WasherGuideViewController.swift */,
-				C598770E1DC5B87100F194A2 /* DryerGuideViewController.swift */,
 				C5D5B9101DAC1BC500C79BFB /* PwChangeViewController.swift */,
 				C5D439FE1D633435000922B2 /* Main.storyboard */,
 				C5D43A031D633435000922B2 /* LaunchScreen.storyboard */,
@@ -556,7 +550,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C598770D1DC5B2CB00F194A2 /* GuideTabBarController.swift in Sources */,
-				C5D5B90D1DAC11F800C79BFB /* WasherGuideViewController.swift in Sources */,
 				C555BA5D1D98E53900CFBC79 /* MainNavigationController.swift in Sources */,
 				C5D43A291D6339E9000922B2 /* SignupViewController.swift in Sources */,
 				C5D5B9151DBF89C900C79BFB /* NoticeContentViewController.swift in Sources */,
@@ -564,7 +557,6 @@
 				C5D439FB1D633435000922B2 /* AppDelegate.swift in Sources */,
 				C5D5B90F1DAC12D400C79BFB /* SettingTableViewController.swift in Sources */,
 				C5D5B9131DBB649100C79BFB /* NoticeTableViewController.swift in Sources */,
-				C598770F1DC5B87100F194A2 /* DryerGuideViewController.swift in Sources */,
 				C5D5B9111DAC1BC500C79BFB /* PwChangeViewController.swift in Sources */,
 				C543A5911D983EAC00E16724 /* LoginViewController.swift in Sources */,
 				C5D43AB11D65DA73000922B2 /* MainViewController.swift in Sources */,

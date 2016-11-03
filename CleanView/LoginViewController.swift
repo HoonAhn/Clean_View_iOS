@@ -45,9 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let alarmBool = UserDefaults.standard
             alarmBool.set(0, forKey: "device1")
             alarmBool.set(0, forKey: "device2")
-            alarmBool.set(0, forKey: "device3")
-            alarmBool.set(0, forKey: "device4")
-            
         }
     }
     

@@ -23,8 +23,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet var washer1Button: UIButton!
     @IBOutlet var washer2Button: UIButton!
-    @IBOutlet var dryer1Button: UIButton!
-    @IBOutlet var dryer2Button: UIButton!
     
     @IBOutlet var washer1NameLabel: UILabel!
     @IBOutlet var washer2NameLabel: UILabel!
@@ -63,8 +61,6 @@ class MainViewController: UIViewController {
         
         self.changeAlarmButton(deviceNum: 1, status: alarmBool.integer(forKey: "device1"))
         self.changeAlarmButton(deviceNum: 2, status: alarmBool.integer(forKey: "device2"))
-        self.changeAlarmButton(deviceNum: 3, status: alarmBool.integer(forKey: "device3"))
-        self.changeAlarmButton(deviceNum: 4, status: alarmBool.integer(forKey: "device4"))
         
 //        DispatchQueue.main.async {
 //        
@@ -119,14 +115,6 @@ class MainViewController: UIViewController {
     }
     @IBAction func onWasher2Button(_ sender: AnyObject) {
         let deviceNum:Int = 2
-        alarmCheck(deviceNum)
-    }
-    @IBAction func onDryer1Button(_ sender: AnyObject) {
-        let deviceNum:Int = 3
-        alarmCheck(deviceNum)
-    }
-    @IBAction func onDryer2Button(_ sender: AnyObject) {
-        let deviceNum:Int = 4
         alarmCheck(deviceNum)
     }
     
@@ -205,20 +193,6 @@ class MainViewController: UIViewController {
             }
             task.resume()
         }
-        // 건조기는 로컬 알림
-        else {
-            let app = UIApplication.shared
-            let notifyAlarm = UILocalNotification()
-            let second = 10.0
-            let alarmType = Date().addingTimeInterval(second)
-            notifyAlarm.soundName = UILocalNotificationDefaultSoundName
-            notifyAlarm.alertTitle = "Clean View"
-            notifyAlarm.timeZone = TimeZone.current
-            notifyAlarm.alertBody = "\(deviceNum - 2)번 건조기가 완료되었습니다." // 알람 문구
-            notifyAlarm.fireDate = alarmType // 알람이 울릴 날짜
-            
-            app.scheduleLocalNotification(notifyAlarm)
-        }
         
     }
     
@@ -229,7 +203,7 @@ class MainViewController: UIViewController {
         
         URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
             if error != nil {
-                print(error)
+                print(error as Any)
             } else {
                 do {
                     let parsedData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
@@ -276,8 +250,6 @@ class MainViewController: UIViewController {
     func changeEveryAlarmButton() {
         self.changeAlarmButton(deviceNum: 1, status: alarmBool.integer(forKey: "device1"))
         self.changeAlarmButton(deviceNum: 2, status: alarmBool.integer(forKey: "device2"))
-        self.changeAlarmButton(deviceNum: 3, status: alarmBool.integer(forKey: "device3"))
-        self.changeAlarmButton(deviceNum: 4, status: alarmBool.integer(forKey: "device4"))
     }
     func changeAlarmButton(deviceNum:Int, status:Int){
         if status == 0 {
@@ -289,14 +261,6 @@ class MainViewController: UIViewController {
                 washer2Button.setTitle("알림받기", for: .normal)
                 washer2Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
                 washer2Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
-            } else if (deviceNum == 3) {
-                dryer1Button.setTitle("알림받기", for: .normal)
-                dryer1Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
-                dryer1Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
-            } else {
-                dryer2Button.setTitle("알림받기", for: .normal)
-                dryer2Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
-                dryer2Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
             }
         } else {
             if (deviceNum == 1) {
@@ -307,14 +271,6 @@ class MainViewController: UIViewController {
                 washer2Button.setTitle("알림취소", for: .normal)
                 washer2Button.setTitleColor(UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
                 washer2Button.setBackgroundImage(UIImage(named: "AlarmActive.png"), for: .normal)
-            } else if (deviceNum == 3) {
-                dryer1Button.setTitle("알림취소", for: .normal)
-                dryer1Button.setTitleColor(UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
-                dryer1Button.setBackgroundImage(UIImage(named: "AlarmActive.png"), for: .normal)
-            } else {
-                dryer2Button.setTitle("알림취소", for: .normal)
-                dryer2Button.setTitleColor(UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
-                dryer2Button.setBackgroundImage(UIImage(named: "AlarmActive.png"), for: .normal)
             }
         }
     }
@@ -389,17 +345,12 @@ class MainViewController: UIViewController {
             dryer1NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
             dryer1StatusLabel.text = "사용 가능"
             dryer1StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
-            dryer1Button.setTitle("알림받기", for: .normal)
-            dryer1Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
-            dryer1Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
-            dryer1Button.isEnabled = false
 
         } else {
             self.dryer1ProgressBarView.progress = 1.0
             dryer1NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
             dryer1StatusLabel.text = "사용 중"
             dryer1StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
-            dryer1Button.isEnabled = true
         }
         
         if status4 == "0" {
@@ -407,17 +358,12 @@ class MainViewController: UIViewController {
             dryer2NameLabel.textColor = UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0)
             dryer2StatusLabel.text = "사용 가능"
             dryer2StatusLabel.textColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
-            dryer2Button.setTitle("알림받기", for: .normal)
-            dryer2Button.setTitleColor(UIColor(red: 0.85, green: 0.858, blue: 0.854, alpha: 1.0), for: .normal)
-            dryer2Button.setBackgroundImage(UIImage(named: "AlarmInactive.png"), for: .normal)
-            dryer2Button.isEnabled = false
 
         } else {
             self.dryer2ProgressBarView.progress = 1.0
             dryer2NameLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
             dryer2StatusLabel.text = "사용 중"
             dryer2StatusLabel.textColor = UIColor(red: 0.364, green: 0.364, blue: 0.364, alpha: 1.0)
-            dryer2Button.isEnabled = true
         }
     }
     
