@@ -117,7 +117,7 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onSaveBarButton(_ sender: AnyObject) {
         
         let currentPW = currentPWTextField.text
-        let newPW = newPWTextField.text
+        let newRawPW = newPWTextField.text
         let confirmPW = newPWConfirmTextField.text
         
         let autoLoginInfo = UserDefaults.standard
@@ -130,12 +130,17 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        guard let pw = newRawPW?.trimmingCharacters(in: NSCharacterSet.whitespaces) else {
+            print("String trim error")
+            return
+        }
+        
         if (currentPW != "" && currentPW == password) {
-            if (newPW != "") {
-                if (newPW.characters.count >= 4 && newPW.characters.count <= 12){
+            if (pw != "") {
+                if (pw.characters.count >= 4 && pw.characters.count <= 12){
                     if (confirmPW != "") {
-                        if (newPW == confirmPW) {
-                            postToServer(id: username, newPassword : newPW!)
+                        if (pw == confirmPW) {
+                            postToServer(id: username, newPassword : pw)
                         } else {
                             alertUser("경고", body: "비밀번호를 재확인해주십시오.")
                         }

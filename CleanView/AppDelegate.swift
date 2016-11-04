@@ -211,6 +211,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         connectToFcm()
+        
+        DispatchQueue.main.async {
+            self.getAlarmInfoFromServer(deviceNum: 1)
+            self.getAlarmInfoFromServer(deviceNum: 2)
+        }
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -241,6 +247,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //Tricky line
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.unknown)
         print("Device Token:", tokenString)
+    }
+    
+    func getAlarmInfoFromServer(deviceNum:Int) {
+        // 세탁기는 푸쉬 알림
+        let token = FIRInstanceID.instanceID().token()!
+        
+        let url = URL(string:"http://52.78.53.87/fcm/confirm.php")
+        var request = URLRequest(url: url!)
+        let bodydata = "num=\(deviceNum)&token=\(token)"
+        
+        request.httpMethod = "POST"
+        request.httpBody = bodydata.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            if error != nil{
+                print("error = \(error)")
+                return
+            }
+            //                print("response = \(response)")
+            let responseString = String(data: data!, encoding: String.Encoding.utf8)
+            print("responseString = \(responseString)")
+            if (responseString == "0"){
+                print("알림 세팅")
+                let alarmBool = UserDefaults.standard
+                alarmBool.set(0, forKey: "device\(deviceNum)")
+            }
+        }
+        task.resume()
+        
     }
     
 }

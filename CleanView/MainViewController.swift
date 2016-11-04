@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
     let DF = DateFormatter()
     var timer: Timer?
     var timer2: Timer?
-    let washerDuration:Double = 35 * 60 // 세탁 시간 35분을 초단위로 표현
+    let washerDuration:Double = 40 * 60 // 세탁 시간 35분을 초단위로 표현
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var multiplier = 1.0
     var alarmBool = UserDefaults.standard
@@ -58,10 +58,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         self.getDeviceInfoFromServer()
-        
-        self.changeAlarmButton(deviceNum: 1, status: alarmBool.integer(forKey: "device1"))
-        self.changeAlarmButton(deviceNum: 2, status: alarmBool.integer(forKey: "device2"))
-        
+        self.changeEveryAlarmButton()
 //        DispatchQueue.main.async {
 //        
 //        }
@@ -91,7 +88,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MainViewController.getDeviceInfoFromServer), userInfo: nil, repeats: true)
-        timer2 = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MainViewController.changeEveryAlarmButton), userInfo: nil, repeats: true)
+        timer2 = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(MainViewController.changeEveryAlarmButton), userInfo: nil, repeats: true)
         // 세탁기를 예약한 내역
         // UserDefaults 에 저장된 딕셔너리를 불러와 세탁기의 상태 파악
         
@@ -247,6 +244,7 @@ class MainViewController: UIViewController {
             }
         }).resume()
     }
+    
     func changeEveryAlarmButton() {
         self.changeAlarmButton(deviceNum: 1, status: alarmBool.integer(forKey: "device1"))
         self.changeAlarmButton(deviceNum: 2, status: alarmBool.integer(forKey: "device2"))

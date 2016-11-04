@@ -74,11 +74,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         let rawId = newUsernameTextField.text
         let rawPw = newPasswordTextField.text
         let pwConfirm = confirmPasswordTextField.text
-        guard let id = rawId?.trim() else {
+        guard let id = rawId?.trimmingCharacters(in: NSCharacterSet.whitespaces) else {
             print("String trim error")
             return
         }
-        guard let pw = rawPw?.trim() else {
+        guard let pw = rawPw?.trimmingCharacters(in: NSCharacterSet.whitespaces) else {
             print("String trim error")
             return
         }
@@ -182,12 +182,4 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     */
 
-}
-
-extension String
-{
-    func trim() -> String
-    {
-        return self.trimmingCharacters(in: NSCharacterSet.whitespaces)
-    }
 }

@@ -111,7 +111,7 @@ class NoticeTableViewController: UITableViewController {
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) {(data, response, error) in
             if error != nil {
-                print(error)
+                print(error!)
             } else {
                 do {
                     print("parsing......")
