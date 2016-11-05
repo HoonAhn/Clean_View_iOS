@@ -10,8 +10,6 @@ import UIKit
 import Firebase
 
 class SettingTableViewController: UITableViewController {
-
-    @IBOutlet var alarmSoundSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +26,6 @@ class SettingTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func alarmSoundSwitchChanged(_ sender: AnyObject) {
-        
-        
-        
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -42,16 +34,8 @@ class SettingTableViewController: UITableViewController {
         let row = indexPath.row
         print("Section: \(section)")
         print("Row: \(row)")
-/*
-        if (section == 0 && row == 1) {
-            guard let gtbc = self.storyboard?.instantiateViewController(withIdentifier: "GuideTBC") else {
-                print("gtbc error")
-                return
-            }
-            self.present(gtbc, animated: true, completion: nil)
-        }
-*/
-        if (section == 1 && row == 2) {
+
+        if (section == 1 && row == 1) {
             print("로그아웃 되었습니다.")
             let autoLoginInfo = UserDefaults.standard
             if autoLoginInfo.string(forKey: "ID") != nil{
@@ -89,7 +73,7 @@ class SettingTableViewController: UITableViewController {
                 let responseString = String(data: data!, encoding: String.Encoding.utf8)
                 print("responseString = \(responseString)")
                 if (responseString == "1"){
-                    print("알림 취소")
+                    
                     let url = URL(string:"http://52.78.53.87/fcm/delete.php")
                     var request = URLRequest(url: url!)
                     let bodydata = "num=\(index)&token=\(token)"

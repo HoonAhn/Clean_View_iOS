@@ -16,7 +16,6 @@ class MainNavigationController: UINavigationController {
         self.navigationBar.barStyle = UIBarStyle.black
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationBar.tintColor = UIColor.white
-        
         // Do any additional setup after loading the view.
     }
 

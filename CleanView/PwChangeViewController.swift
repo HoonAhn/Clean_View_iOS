@@ -20,9 +20,14 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
+         let statWindow = UIApplication.shared.value(forKey:"statusBarWindow") as! UIView
+         let statusBar = statWindow.subviews[0] as UIView
+         statusBar.backgroundColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
+         */
 
         self.navigationBar.barTintColor = UIColor(red: 0.0, green: 0.537, blue: 0.874, alpha: 1.0)
-        //self.navigationBar.barStyle = UIBarStyle.
+        self.navigationBar.barStyle = UIBarStyle.black
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationBar.tintColor = UIColor.white
         
@@ -66,14 +71,12 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
     }
     
     func postToServer(id : String, newPassword : String) {
-        print("start password change")
         
         let url : URL = URL(string: "http://52.78.53.87/change.php")!
         
         var request = URLRequest(url: url)
         
         let bodydata = "id=\(id)&password=\(newPassword)"
-        print("\(bodydata) is the new id & pw")
         request.httpMethod = "POST"
         request.httpBody = bodydata.data(using: String.Encoding.utf8)
         
@@ -95,7 +98,6 @@ class PwChangeViewController: UIViewController, UITextFieldDelegate {
                 DispatchQueue.main.async{
                     self.presentingViewController?.dismiss(animated: true, completion: nil)
                 }
-                print("end of password change")
             }
         }
         task.resume()

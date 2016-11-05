@@ -255,8 +255,8 @@
                                         <color key="textColor" red="0.85068947080000001" green="0.85898154969999996" blue="0.85472971200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tz5-d0-KeM" customClass="CircleProgressView" customModule="CleanView" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="50" width="145" height="145"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tz5-d0-KeM" customClass="CircleProgressView" customModule="CleanView" customModuleProvider="target">
+                                        <rect key="frame" x="7" y="50" width="145" height="145"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="사용 가능" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZP-Gi-2P6">
                                                 <rect key="frame" x="12" y="42" width="120" height="60"/>
@@ -520,7 +520,7 @@
                             <tableViewSection headerTitle="안내" id="nTB-lU-lSW">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableCell" textLabel="0Iz-MC-Fds" style="IBUITableViewCellStyleDefault" id="cZe-m9-DBQ">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cZe-m9-DBQ" id="JZr-QX-rNe">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -540,7 +540,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableCell" textLabel="VTm-If-QY4" style="IBUITableViewCellStyleDefault" id="igG-mo-Ri8">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igG-mo-Ri8" id="cig-dy-oyZ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -563,37 +563,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="계정 설정" id="uAP-HZ-PEy">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" id="yIC-bl-59l">
-                                        <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yIC-bl-59l" id="5MG-nS-gjO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7u9-Eu-TE1">
-                                                    <rect key="frame" x="308" y="6" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.007184964605" green="0.53345161679999997" blue="0.88226211070000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <connections>
-                                                        <action selector="alarmSoundSwitchChanged:" destination="r0d-Ye-gMJ" eventType="valueChanged" id="AdB-Pg-8z1"/>
-                                                    </connections>
-                                                </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="알림음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1G-Jp-czO">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="7u9-Eu-TE1" secondAttribute="bottom" constant="6.5" id="65B-ES-psl"/>
-                                                <constraint firstAttribute="trailing" secondItem="7u9-Eu-TE1" secondAttribute="trailing" constant="18" id="ffx-DA-pGg"/>
-                                                <constraint firstItem="7u9-Eu-TE1" firstAttribute="top" secondItem="5MG-nS-gjO" secondAttribute="top" constant="6" id="wb0-cG-3EM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableCell" textLabel="cbG-fz-fFl" style="IBUITableViewCellStyleDefault" id="6SJ-R0-cfH">
-                                        <rect key="frame" x="0.0" y="243.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="201" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6SJ-R0-cfH" id="6ZR-vh-Myh">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -613,7 +584,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" textLabel="jMa-ed-xw4" style="IBUITableViewCellStyleDefault" id="ES6-h8-JUl">
-                                        <rect key="frame" x="0.0" y="287.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="245" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ES6-h8-JUl" id="rfH-Fc-NMc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -638,9 +609,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Setting" id="BhE-EN-nuK"/>
-                    <connections>
-                        <outlet property="alarmSoundSwitch" destination="7u9-Eu-TE1" id="XTm-7y-Raj"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yB8-2Z-2WZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -901,24 +869,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0um-3A-X50">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="비밀번호 변경" id="bEc-Rw-3s8">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hzp-FL-Edk">
-                                            <connections>
-                                                <action selector="onCancelBarButton:" destination="t7G-Uw-FU5" id="r1z-dR-TsE"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="efp-nJ-TAA">
-                                            <connections>
-                                                <action selector="onSaveBarButton:" destination="t7G-Uw-FU5" id="KRe-uO-pJt"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호 확인" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EQA-KH-RsO">
                                 <rect key="frame" x="72" y="282" width="231" height="30"/>
                                 <constraints>
@@ -952,15 +902,45 @@
                                     <outlet property="delegate" destination="Aay-93-2Ov" id="N5e-RJ-EeD"/>
                                 </connections>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fwt-zY-Bc7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0um-3A-X50">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <items>
+                                            <navigationItem title="비밀번호 변경" id="bEc-Rw-3s8">
+                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hzp-FL-Edk">
+                                                    <connections>
+                                                        <action selector="onCancelBarButton:" destination="t7G-Uw-FU5" id="r1z-dR-TsE"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" systemItem="save" id="efp-nJ-TAA">
+                                                    <connections>
+                                                        <action selector="onSaveBarButton:" destination="t7G-Uw-FU5" id="KRe-uO-pJt"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.007184964605" green="0.53345161679999997" blue="0.88226211070000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Zch-nh-EDe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EQA-KH-RsO" firstAttribute="top" secondItem="ljT-OB-sdQ" secondAttribute="bottom" constant="50" id="Cid-qS-wYa"/>
                             <constraint firstItem="t4S-3J-AtE" firstAttribute="top" secondItem="ZSG-9O-A4x" secondAttribute="bottom" constant="102" id="Equ-MF-Vpw"/>
+                            <constraint firstItem="Fwt-zY-Bc7" firstAttribute="top" secondItem="dk1-1w-9KG" secondAttribute="top" id="NWu-V6-nwB"/>
                             <constraint firstItem="EQA-KH-RsO" firstAttribute="centerX" secondItem="dk1-1w-9KG" secondAttribute="centerX" id="P8H-ZD-xzL"/>
                             <constraint firstItem="ljT-OB-sdQ" firstAttribute="centerX" secondItem="dk1-1w-9KG" secondAttribute="centerX" id="S1B-MC-ovQ"/>
                             <constraint firstItem="t4S-3J-AtE" firstAttribute="centerX" secondItem="dk1-1w-9KG" secondAttribute="centerX" id="SdY-2T-Iln"/>
                             <constraint firstItem="ljT-OB-sdQ" firstAttribute="top" secondItem="t4S-3J-AtE" secondAttribute="bottom" constant="50" id="eT3-g4-FTC"/>
+                            <constraint firstItem="Fwt-zY-Bc7" firstAttribute="leading" secondItem="dk1-1w-9KG" secondAttribute="leading" id="ilg-Pn-hPP"/>
+                            <constraint firstAttribute="trailing" secondItem="Fwt-zY-Bc7" secondAttribute="trailing" id="is6-R8-JbK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1100,7 +1080,7 @@
             </objects>
             <point key="canvasLocation" x="4232.8000000000002" y="-388.15592203898052"/>
         </scene>
-        <!--Title-->
+        <!--Signup View Controller-->
         <scene sceneID="akk-Eq-mUZ">
             <objects>
                 <viewController storyboardIdentifier="SignupVC" id="Aay-93-2Ov" customClass="SignupViewController" customModule="CleanView" customModuleProvider="target" sceneMemberID="viewController">
@@ -1112,8 +1092,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="* 표시는 필수 기재 사항입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3m6-gD-orh">
-                                <rect key="frame" x="203" y="626" width="152" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* 표시는 필수 기재 사항입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3m6-gD-orh">
+                                <rect key="frame" x="207" y="626" width="148" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.39995324609999999" green="0.40002685789999998" blue="0.39994865660000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1167,34 +1147,45 @@
                                     <action selector="onSignupButton:" destination="Aay-93-2Ov" eventType="touchUpInside" id="JSA-dy-WHW"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpX-ph-jwl">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="0.007184964605" green="0.53345161679999997" blue="0.88226211070000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="회원 가입" id="7AU-K2-cbU">
-                                        <barButtonItem key="leftBarButtonItem" image="ExitIcon" id="ffp-VN-HsL">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="onCancelButton:" destination="Aay-93-2Ov" id="s13-yu-o5V"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1X-hI-PuS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpX-ph-jwl">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <textAttributes key="titleTextAttributes">
+                                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                        </textAttributes>
+                                        <items>
+                                            <navigationItem title="회원 가입" id="7AU-K2-cbU">
+                                                <barButtonItem key="leftBarButtonItem" image="ExitIcon" id="ffp-VN-HsL">
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="onCancelButton:" destination="Aay-93-2Ov" id="s13-yu-o5V"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.007184964605" green="0.53345161679999997" blue="0.88226211070000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="fcS-F2-u8p"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="X1X-hI-PuS" secondAttribute="trailing" id="4bR-o1-Fca"/>
                             <constraint firstItem="3m6-gD-orh" firstAttribute="top" secondItem="5N1-lV-KDs" secondAttribute="bottom" constant="73" id="7f0-Zu-DSc"/>
                             <constraint firstItem="soQ-zZ-QYq" firstAttribute="top" secondItem="3m6-gD-orh" secondAttribute="bottom" constant="20" id="8zQ-6E-MCL"/>
                             <constraint firstItem="8FC-xn-0Ti" firstAttribute="top" secondItem="7JE-pE-EhU" secondAttribute="bottom" constant="166" id="Bvv-BB-qx8"/>
                             <constraint firstItem="5Nj-KS-xOd" firstAttribute="width" secondItem="8FC-xn-0Ti" secondAttribute="width" id="NHL-Kx-ZlU"/>
                             <constraint firstItem="5N1-lV-KDs" firstAttribute="top" secondItem="7JE-pE-EhU" secondAttribute="bottom" constant="488" id="OuM-AR-OVC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3m6-gD-orh" secondAttribute="trailing" constant="4" id="TET-CE-dKE"/>
+                            <constraint firstItem="X1X-hI-PuS" firstAttribute="leading" secondItem="QMw-5S-GCa" secondAttribute="leading" id="TWk-Q0-E1i"/>
                             <constraint firstItem="ruv-YH-drw" firstAttribute="centerX" secondItem="QMw-5S-GCa" secondAttribute="centerX" id="U7e-kU-Hgl"/>
+                            <constraint firstItem="X1X-hI-PuS" firstAttribute="top" secondItem="QMw-5S-GCa" secondAttribute="top" id="VQy-AF-PCe"/>
                             <constraint firstItem="8FC-xn-0Ti" firstAttribute="centerX" secondItem="QMw-5S-GCa" secondAttribute="centerX" id="co2-MV-fUC"/>
                             <constraint firstItem="5N1-lV-KDs" firstAttribute="centerX" secondItem="QMw-5S-GCa" secondAttribute="centerX" id="iU8-R1-GJu"/>
                             <constraint firstItem="5Nj-KS-xOd" firstAttribute="top" secondItem="7JE-pE-EhU" secondAttribute="bottom" constant="94" id="kc8-FA-hsF"/>
@@ -1203,7 +1194,6 @@
                             <constraint firstItem="ruv-YH-drw" firstAttribute="top" secondItem="7JE-pE-EhU" secondAttribute="bottom" constant="237" id="xjc-p3-jgo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="och-OT-Wgq"/>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="ruv-YH-drw" id="L1v-FM-XmF"/>
                         <outlet property="navigationBar" destination="bpX-ph-jwl" id="ENr-cQ-z89"/>
@@ -1213,7 +1203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFZ-iC-QJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="1161"/>
+            <point key="canvasLocation" x="152.80000000000001" y="1160.8695652173915"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="tdc-F1-abV">
@@ -1237,10 +1227,10 @@
             </objects>
             <point key="canvasLocation" x="882" y="336"/>
         </scene>
-        <!--Guide Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="aGr-Lv-99z">
             <objects>
-                <tabBarController storyboardIdentifier="GuideTBC" automaticallyAdjustsScrollViewInsets="NO" id="43b-Qe-fOT" customClass="GuideTabBarController" customModule="CleanView" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="GuideTBC" automaticallyAdjustsScrollViewInsets="NO" id="43b-Qe-fOT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="af3-gp-DtH">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

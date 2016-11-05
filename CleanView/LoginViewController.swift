@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let autoLoginInfo = UserDefaults.standard
         if let autoLoginID = autoLoginInfo.string(forKey: "ID"){
             if let autoLoginPW = autoLoginInfo.string(forKey: "PW"){
-                print("자동 로그인 가능")
+                
                 get(autoLoginID, password: autoLoginPW)
             }
         } else {
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
 //                print("response = \(response)")
                 let responseString = String(data: data!, encoding: String.Encoding.utf8)
-                print("responseString = \(responseString)")
+                //print("responseString = \(responseString)")
                 if (responseString == "invalidid"){
                     DispatchQueue.main.async{
                         self.alertUser("경고", body: "존재하지 않는 아이디입니다.")
@@ -80,7 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self.alertUser("경고", body: "비밀번호를 다시 입력해주십시오.")
                     }
                 } else {
-                    print("로그인 성공")
+                    //print("로그인 성공")
                     
                     let userLoginInfo = UserDefaults.standard
                     userLoginInfo.setValue(username, forKey: "ID")
@@ -127,8 +127,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let id = UsernameTextField.text
         let pw = PasswordTextField.text
-        
-        print("아이디 : \(id) 비밀번호 : \(pw)")
         
         if (id != "") {
             if (pw != "") {

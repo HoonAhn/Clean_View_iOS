@@ -89,8 +89,7 @@ class MainViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MainViewController.getDeviceInfoFromServer), userInfo: nil, repeats: true)
         timer2 = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(MainViewController.changeEveryAlarmButton), userInfo: nil, repeats: true)
-        // 세탁기를 예약한 내역
-        // UserDefaults 에 저장된 딕셔너리를 불러와 세탁기의 상태 파악
+        
         
     }
 
@@ -137,7 +136,7 @@ class MainViewController: UIViewController {
                 let responseString = String(data: data!, encoding: String.Encoding.utf8)
                 print("responseString = \(responseString)")
                 if (responseString == "1"){
-                    print("알림 취소")
+                    //print("알림 취소")
                     let url = URL(string:"http://52.78.53.87/fcm/delete.php")
                     var request = URLRequest(url: url!)
                     let bodydata = "num=\(deviceNum)&token=\(token)"
@@ -153,7 +152,7 @@ class MainViewController: UIViewController {
                         }
 //                        print("response = \(response)")
                         let responseString = String(data: data!, encoding: String.Encoding.utf8)
-                        print("responseString = \(responseString)")
+                        //print("responseString = \(responseString)")
                         DispatchQueue.main.async {
                             self.alertUser("알림 취소", body: "\(deviceNum)번 세탁기의 알림을 받지 않습니다.")
                         }
@@ -162,7 +161,7 @@ class MainViewController: UIViewController {
                     }
                     task.resume()
                 } else {
-                    print("알림 받기")
+                    //print("알림 받기")
                     let url = URL(string:"http://52.78.53.87/fcm/laundry.php")
                     var request = URLRequest(url: url!)
                     let bodydata = "num=\(deviceNum)&token=\(token)&device=ios"
@@ -178,7 +177,7 @@ class MainViewController: UIViewController {
                         }
 //                        print("response = \(response)")
                         let responseString = String(data: data!, encoding: String.Encoding.utf8)
-                        print("responseString = \(responseString)")
+                        //print("responseString = \(responseString)")
                         DispatchQueue.main.async {
                             self.alertUser("알림 받기", body: "\(deviceNum)번 세탁기의 알림을 받습니다.")
                         }

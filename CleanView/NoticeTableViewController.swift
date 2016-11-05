@@ -69,8 +69,6 @@ class NoticeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-
-        print("number of rows in section \(section) : \(self.NoticeDictionary.count)")
         return self.NoticeDictionary.count
     }
 
@@ -82,27 +80,16 @@ class NoticeTableViewController: UITableViewController {
         let notice = self.NoticeDictionary[fullIndex - row - 1]
         cell.textLabel?.text = notice["title"] as String!
         cell.detailTextLabel?.text = notice["date"] as String!
-        print("\(row)th cell is filled : \(cell.textLabel?.text) \(cell.detailTextLabel?.text)")
         // Configure the cell...
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let section = indexPath.section
-        let row = indexPath.row
-//        selectedRow = row
-        print("Section: \(section)")
-        print("Row: \(row)")
-        
     }
 
     func getNoticeFromSever(){
-        print("func getNoticeFromSever")
-        
         let urlString = "http://52.78.53.87/notice.php"
         guard let url = URL(string: urlString) else {
             print("URL error")
@@ -114,17 +101,15 @@ class NoticeTableViewController: UITableViewController {
                 print(error!)
             } else {
                 do {
-                    print("parsing......")
+                    
                     let parsedData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                     
                     if let resultArray = parsedData["result"] as? [[String:Any]] {
-                        print("result Array is \(resultArray)")
+                        //print("result Array is \(resultArray)")
                         for noticeDic in resultArray {
-                            print("appending!... : \(noticeDic)")
+                            //print("appending!... : \(noticeDic)")
                             self.NoticeDictionary.append(noticeDic as! [String : String])
                         }
-                        print("end of parsing")
-                        
                     } else {
                         print("result를 JSON에서 파싱하는데서 오류")
                     }
@@ -133,17 +118,12 @@ class NoticeTableViewController: UITableViewController {
                 }
                 
             }
-            
-            print("end of func getNoticeFromSever")
-//            self.activityIndicator.stopAnimating()
-//            self.activityIndicator.isHidden = true
             self.tableRefresh()
         }.resume()
         
     }
     
     func tableRefresh(){
-        print("table refreshed!")
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

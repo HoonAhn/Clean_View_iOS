@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        print("******** didFinishLaunchingWithOptions called")
+        // print("******** didFinishLaunchingWithOptions called")
         // new test
         FIRApp.configure()
         
@@ -43,21 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }
-                /*
-        // launched by push noti
-        if (launchOptions != nil) {
-            print("did push arrived??? \nlauch option : \(launchOptions)")
-        }
-        FIRApp.configure()
-        
-        // Add observer for InstanceID token refresh callback.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotificaiton), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
-        
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
-        */
-        
         
         return true
     }
@@ -95,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // test
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("Handle push from background or closed")
+        //print("Handle push from background or closed")
         // if you set a member variable in didReceiveRemoteNotification, you  will know if this is from closed or background
 //        print("\(response.notification.request.content.userInfo)")
         if let tempMessage = response.notification.request.content.userInfo["aps"] as? [String:Any],
@@ -117,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("Handle push from foreground")
+        //print("Handle push from foreground")
         // custom code to handle push while app is in the foreground
 //        print("\(notification.request.content.userInfo)")
         
@@ -153,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func tokenRefreshNotificaiton(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token(){
-            print("InstanceID token: \(refreshedToken)")
+            //print("InstanceID token: \(refreshedToken)")
             
             let url = URL(string:"http://52.78.53.87/fcm/register.php")
             var request = URLRequest(url: url!)
@@ -170,12 +155,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
                 print("response = \(response)")
                 let responseString = String(data: data!, encoding: String.Encoding.utf8)
-                print("responseString = \(responseString)")
+                //print("responseString = \(responseString)")
             }
             task.resume()
             
         } else {
-            print("토큰 초기화 안됨--------------")
+            print("token initiate error")
+            return
         }
         
         // Connect to FCM since connection may have failed when attempted before having a token.
@@ -223,19 +209,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-
-//    func registerForPushNotifications(_ application: UIApplication){
-//        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-//        application.registerUserNotificationSettings(settings)
-//    }
-    
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        if notificationSettings.types != UIUserNotificationType() {
-            print("*** notificationSettings.types != UIUserNotificationType() called")
-//            application.registerForRemoteNotifications()
-        }
-    }
-    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
         var tokenString = ""
@@ -243,10 +216,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         for i in 0..<deviceToken.count {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
-        print("%%%%%%%%%%  didRegisterForRemoteNotificationsWithDeviceToken")
         //Tricky line
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.unknown)
-        print("Device Token:", tokenString)
+        //print("Device Token:", tokenString)
     }
     
     func getAlarmInfoFromServer(deviceNum:Int) {
@@ -268,9 +240,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             //                print("response = \(response)")
             let responseString = String(data: data!, encoding: String.Encoding.utf8)
-            print("responseString = \(responseString)")
+            // print("responseString = \(responseString)")
             if (responseString == "0"){
-                print("알림 세팅")
+                //print("알림 세팅")
                 let alarmBool = UserDefaults.standard
                 alarmBool.set(0, forKey: "device\(deviceNum)")
             }
