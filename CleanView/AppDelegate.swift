@@ -223,7 +223,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func getAlarmInfoFromServer(deviceNum:Int) {
         // 세탁기는 푸쉬 알림
-        let token = FIRInstanceID.instanceID().token()!
+        guard let token = FIRInstanceID.instanceID().token() else {
+            print("getting token error")
+            return
+        }
         
         let url = URL(string:"http://52.78.53.87/fcm/confirm.php")
         var request = URLRequest(url: url!)
